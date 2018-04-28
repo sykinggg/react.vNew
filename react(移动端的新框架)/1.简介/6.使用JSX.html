@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>使用JSX</title>
+		<!--引用react基础文件-->
+		<script src="../react.js"></script>
+		<!--引用react虚拟DOM的文件-->
+		<script src="../react-dom.js"></script>
+		<!--引用jsx的支持文件-->
+		<!--<script src="../browser.min.js"></script>-->
+		<script src="../Transform.js"></script>
+		<style>
+			@font-face {
+				font-family:"LED";
+				src:url("font/LED.eot?") format("eot"),
+					url("font/LED.woff") format("woff"),
+					url("font/LED.ttf") format("truetype"),
+					url("font/LED.svg#LED") format("svg");
+				font-weight:normal;
+				font-style:normal;
+			}
+			.ez-led{
+				font-family : "LED";
+				font-size : 40px;
+				background : #70d355;
+				width: 300px;
+				height:60px;
+				line-height : 60px;
+				text-align : right;
+				padding : 10px;
+				letter-spacing:5px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>使用JSX</h1>
+		<p>增加了这些XML语法的脚本不能再称为JavaScript了，使用上 略有区别</p>
+		<h2>·指定脚本类型</h2>
+		<p>在html文件中引入的JSX脚本，需要指定类型为text/jsx</p>
+		<!--内联脚本-->
+		<script type="text/jsx">...</script>
+		<!--外部脚本-->
+		<script src="" type="text/jsx"></script>
+		<h2>·引入JSX语法转换库</h2>
+		<p>在html中使用JSX，还需要引入JSX语法转换库JSXTransform.js</p>
+		<p>这个库加载后，将在DOM树构造完成后（通过监听DOMContentLoaded事件）处理 JSX脚本</p>
+		<h3>处理详解！</h3>
+		<p>1. 搜索DOM树中的script节点，如果其类型为text/jsx则进行后续处理</p>
+		<p>2. 读取script节点的内容，将其转化为JavaScript代码</p>
+		<p>3. 构造一个新的script元素，设置其内容为转化结果代码，并追加到DOM树head元素中</p>
+		<h3>注意1</h3>
+		<p>JSXTransform.js引入后通过全局对象JSXTransformer提供了API接口， 我们可以使用transform()方法来模拟这个语法自动转换的过程</p>
+		<h1>真实示例:</h1>
+		<!--定义容器-->
+		<div id="content">
+			<button onclick="transform()">模拟jsx自动处理过程</button>
+		</div>
+		<script type="text/jsx" id="demo">
+			<!--//定义React组件-->
+			var Ele = React.createClass({
+				<!--//每个React组件都应该事先render()方法-->
+				render: function(){
+					var e = 
+						<div>
+							<div className="ez-led">Hello</div>
+							<div calssName="ez-led">20160303</div>
+						</div>
+					return e;
+				}
+			});
+			<!--渲染-->
+			ReactDOM.render(<Ele/>,document.querySelector("#content"));
+		</script>
+		<script type="text/javascript">
+			var transform = function(){
+				//模拟JSX语法转换
+		var transform = function(){
+			var el = document.querySelector("#demo"),
+				//1.将原始JSX代码转换为JS代码
+				jsxt = JSXTransformer.transform(el.text);  
+
+			var headEl = document.querySelector("head"),
+				scriptEl = document.createElement("script");
+			
+			//2.设置新的script元素的内容为转换后的代码	
+			scriptEl.text = jsxt.code;
+			scriptEl.type = "text/javascript";
+			
+			//3.将新的script元素追加到文档head元素
+			headEl.appendChild(scriptEl);					
+		};
+			}
+		</script>
+	</body>
+</html>

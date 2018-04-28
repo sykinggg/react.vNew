@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>JSX可展开属性</title>
+		<script src="../react.js"></script>
+		<script src="../react-dom.js"></script>
+		<script src="../browser.min.js"></script>
+		<style>
+			.ez-slider{			
+				position:relative;
+				display:inline-block;
+			}
+			.ez-slider img.knob{
+				position:absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>JSX可展开属性</h1>
+		<p>在JSX中，有时一个React元素的属性很多，比如在示例代码中设置音量推子组件 的属性</p>
+		<!--jsx-->
+		<div className="ez-slider" onMouseDown={this.onMouseDown} onMouseMove={this.onMouseMove} 
+			onMouseUp={this.onMouseUp}></div>
+		<p>JSX有一个很好的特性让我们可以给React元素设置一个JSON对象作为属性包</p>
+		<p>这个属性 包将按照字段展开为分立的React元素的属性，被称为可展开属性</p>
+		<h3>示例:</h3>
+		<p>使用如下 方式在React元素上声明一个可展开属性，其中propbag是一个JSON对象</p>
+		<ang {...propbag}>
+		<p>前面的示例使用可展开属性的方式改写</p>
+		<script type="text/jsx">
+			<!--定义属性包-->
+			var props = {
+				className: "ez-slider",
+				onMouseDown: this.onMouseDown,
+				onMouseUp: this.onMouseUp,
+				onMouseMove: this.onMouseMove
+			};
+			<!--传入属性包-->
+			var rel = <div{...props}></div>;
+		</script>
+		<h1>真实示例</h1>
+		<div id="content"></div>
+		<script type="text/jsx">
+			var Ele = React.createClass({
+				getInitialState: function(){
+					return {
+						moving: false,
+						oTop: 191,
+						left: 41,
+						top: 191,
+						value: 0.00
+					}
+				},
+				onMouseDown: function(event){
+					if(event.target.className != "knob") return;
+					this.setState({moving: true, oTop: this.state.top, y: event.clientY})
+				},
+				onMouseMove: function(event){
+					event.preventDefault();
+					if(!this.state.moving) return;
+					var deltaY = event.clientY - this.state.y,
+						nTop = this.state.oTop + deltaY,
+						value = (10 - (nTop - 38)*10/(191-38)).toFixed(2);
+					if(nTop <= 191 && nTop >= 38){
+						this.setState({top: nTop, value: value});
+						this.props.onChange && this.props.onChange(value);
+					}
+				},
+				onMouseUp: function(event){
+					this.setState({moving: false});
+				},
+				render: function(){
+					var knobStyle = {
+						left: this.state.left,
+						top: this.state.top,
+						cursor: this.state.moving ? "pointer" : "default"
+					};
+					var props = {
+						className: "ez-slider",
+						onMouseDown: this.onMouseDown,
+						onMouseUp: this.onMouseUp,
+						onMouseMove: this.onMouseMove
+					};
+					return <div {...props}>
+								<img className="bg" src="../../css3/img/roate.png" alt="" />
+								<img className="knob" src="../../AJAX/img/1.jpg" alt="" style={knobStyle}/>
+							</div>;
+				}
+			});
+			React.render(
+				<div>
+					<Ele/>
+					<Ele/>
+					<Ele/>
+					<Ele/>
+				</div>,
+				document.querySelector("#content")
+			);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>默认属性</title>
+		<script src="../react.js"></script>
+		<script src="../react-dom.js"></script>
+		<script src="../browser.min.js"></script>
+		<!--组件样式-->
+		<style>
+			.ez-thermometer{
+				position:relative;
+			}
+			.ez-thermometer .bubble{
+				position:absolute;
+				width:40px;
+				height:40px;
+				border-radius:50%;
+			}
+			.ez-thermometer .bar{
+				position:absolute;
+				width:10px;
+				left:80px;
+				transition:top 0.5s;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>默认属性</h1>
+		<p>通常应该有一些默认的属性值，这样即使调用者没有 显示的指定某个属性值，依然可以通过this.props获得该值</p>
+		<p>在React中定义组件时，使用getDefaultProps()方法声明默认属性</p>
+		<script type="text.jsx">
+			var Ele = React.createClass({
+				getDefaultProps: function(){
+					return {
+						value: 0
+					}
+				},
+				render: function(){
+					return <div className="ez-demo">{this.props.value}</div>
+				}
+			});
+			React.render(<Ele>, document.querySelector("#content"));
+		</script>
+		<h1>真实示例</h1>
+		<div id="content"></div>
+		<script type="text/jsx">
+			//组件定义
+			var EzThermometerComp = React.createClass({
+				//声明默认属性值
+				getDefaultProps:function(){
+					return {
+						value:20,		//温度值
+						color : "red"   //液柱颜色
+					}
+				},
+				//声明初始状态
+				getInitialState:function(){
+					return {
+						mounted:false
+					}
+				},
+				//首次渲染后改变状态
+				componentDidMount:function(){
+					this.setState({mounted:true});
+				},
+				render:function(){
+					//液体球样式
+					var bubbleStyle = {
+						background : this.props.color,
+						left:65,
+						top:350
+					};
+					
+					//零度时液柱top值
+					var top = 253.57;
+					
+					//根据属性值计算液柱top值
+					if(this.state.mounted){
+						top = (50-335)*this.props.value/(50+20)+253.57;
+						//确保之前设置的样式生效
+						window.getComputedStyle(React.findDOMNode(this.refs.bar)).top;
+					}
+					//液柱样式
+					var barStyle = {
+						background : this.props.color,
+						top: top,
+						bottom:80
+					};
+					return 	<div className="ez-thermometer">
+								<img src="img/thermometer.png"/>
+								<div className="bubble" style={bubbleStyle}/>
+								<div className="bar" style={barStyle} ref="bar"/>
+							</div>;
+				}
+			});
+			//渲染
+			React.render(
+				<EzThermometerComp value="37"/>,
+				document.querySelector("#content"));
+		</script>
+	</body>
+</html>

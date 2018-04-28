@@ -1,0 +1,490 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>React-JSX</title>
+	</head>
+	<body>
+		<h1>React-JSX</h1>
+
+
+
+
+
+
+
+		<h2>JSX优点</h2>
+		<ul>
+			<li>更加熟悉</li>
+			<li>更加语义化</li>
+			<li>更加直观</li>
+			<li>抽象化</li>
+			<li>关注点分离</li>
+		</ul>
+
+
+
+
+
+
+		<h2>定义组件</h2>
+		<script>
+			var Divider = React.createClass({
+				render: function() {
+					return (
+						<div className="divider">
+							<h2>定义组件Demo</h2>
+						</div>
+					);
+				}
+			});
+		</script>
+
+
+
+
+
+
+		<h2>动态值</h2>
+		<p>动态值包含在 {} 之中，这其中也自动包括了一个Javascript上下文</p>
+		<p>因此可以直接在里面调用 this</p>
+
+
+		<p>其中相当于执行普通的JavaScript代码，可以放进去变量或者函数</p>
+
+
+
+		<h3>调用外置变量与函数</h3>
+		<script>
+			var text = "定义组件Demo";
+			var getText = function() {
+				return "函数";
+			};
+			var Divider = React.createClass({
+				render: function() {
+					return (
+						<div className="divider">
+							<h2>{text}</h2>
+							<h2>{getText()}<h2>
+						</div>
+					);
+				}
+			});
+		</script>
+
+
+
+		<h3>调用组件内变量与函数</h3>
+		<script>
+			var Divider = React.createClass({
+				text: "定义组件Demo",
+
+				getText: function() {
+					return "函数";
+				},
+
+				render: function() {
+					return (
+						<div className="divider">
+							<h2>{this.getText}</h2>
+							<h2>{this.text}</h2>
+						</div>
+					);
+				}
+			});
+		</script>
+
+
+
+
+		<h3>数组</h3>
+		<p>直接调用数组，输出的是[].join('')后的结果</p>
+
+		<script>
+			// 精简代码
+			var text = ['hello', 'world'];
+			<h2>{text}</h2>
+			// <h2>helloworld</h2>
+		</script>
+
+		<p>对于复杂的表达式，可以通过函数求值来完成</p>
+
+
+
+
+
+
+
+
+
+		<h2>子节点</h2>
+		<p>在React中，所有的子节点都保存在this.props.children中</p>
+
+
+		<h3>注意:</h3>
+		<p>在当前组件内，你直接输出this.props.children是得不到任何信息的，会返回undefined</p>
+		<p>因为该属性是组件的拥有者传递过来的信息，所以，只能在渲染组件的时候进行输出</p>
+
+
+		<h3>示例</h3>
+		<script>
+			var Divider = React.createClass({
+				componentWillMount: function() {
+					console.log(this.props);
+					// Object {children: "hello"}
+				},
+				render: function() {
+					return (
+						<div className="divider">
+							<h2>{this.props.children}<h2>
+						</div>
+					)
+				}
+			});
+			var newDivider = <Divider>hello</Divider>;
+			ReactDom.render(newDivider, document.getElementById('container'));
+		</script>
+
+
+
+
+
+
+
+		<h2>JSX与HTML的区别</h2>
+
+
+		<h3>属性</h3>
+		<p>html中可以用内联的方式为元素添加属性</p>
+
+		<div class="container" id="container">hello world!</div>
+
+		<p>在JSX中也可以给类HTML元素类HTML属性</p>
+
+		<p>除此之外，还可以给添加的输定设置动态的值或者变量，即前面提到的{}</p>
+
+		<script>
+			var queryId = "container";
+			<h2 id={queryId}></h2>
+		</script>
+
+		<h3>注意:</h3>
+		<h3>特殊属性</h3>
+
+		<p>大多数的HTML元素的属性都可以直接用到JSX中</p>
+		<p>有些是不可以直接拿来用的</p>
+		<p>比如关键字：class，for等，需要用className与htmlFor来代替</p>
+
+
+
+
+
+
+		<h3>条件判断</h3>
+		<p>简单的JavaScript语法都可以使用</p>
+		<ul>
+			<li>使用三目运算符</li>
+			<li>设置一个变量并在属性中引用它</li>
+			<li>将逻辑转化到函数中</li>
+			<li>使用&&运算符</li>
+		</ul>
+
+		<h4>真实示例</h4>
+		<script>
+			// 三目运算符
+			<div className={this.state.isDone?'i-open':'i-close'}>hello world</div>
+
+			// 使用变量
+			getIsDone: function() {
+				return this.state.isDone ? 'i-open' : 'i-close';
+			},
+
+			render: function() {
+				var isDone = this.getIsDone();
+				return (
+					<div className={isDone}>hello world</div>
+				)
+			}
+
+			// 直接调用函数
+			getIsDone: function() {
+				return this.state.isDone ? 'i-open' : 'i-close';
+			},
+			render: function() {
+				return (
+					<div className={this.getIsDone()}>hello world</div>
+				)
+			}
+
+			// 使用逻辑&&
+			<div className={this.state.isDone && this.getIsDone()}>hello world</div>
+		</script>
+		<h3>代码描述</h3>
+		<p>对于null和false值React不会输出任何内容</p>
+		<p>通过逻辑与</p>
+		<p>第一个值为true时，第二个语句便会执行</p>
+
+		<h4>可以判断显示那个组件</h4>
+		<script>
+			var content = <Container>{window.isLogin? <Nav /> : <Login />};
+		</script>
+
+
+
+
+
+		<h3>非DOM属性</h3>
+		<p>以下特殊属性只有在JSX中有</p>
+		<ul>
+			<li>键：key</li>
+			<li>引用：ref</li>
+			<li>设置原始的HTML：dangerouslySetInnerHTML</li>
+		</ul>
+
+		<p>key是唯一标识符</p>
+
+		<p>ref是reference的缩写，可以直接在JSX中指定</p>
+		<script>
+			<div className="container" ref="myContainer">...</div>
+		</script>
+
+		<p>可以在组件的refs属性中获取该DOM（并不是真实的）</p>
+		<script>
+			componentWillMount: function() {
+				console.log(this.refs.aaa);
+			},
+			render: function() {
+				return (
+					<div className="divider" ref="aaa">...</div>
+				)
+			}
+		</script>
+
+		<h3>代码描述</h3>
+		<p>该方式获取的是React创建DOM的描述（难以理解。。。）</p>
+		<p>如果要获取真正的DOM节点，可继续调用getDOMNode方法</p>
+
+		<script>
+			this.refs.aaa.getDOMNode();
+		</script>
+
+		<h3>注意拓展</h3>
+		<h3>dangerouslySetInnerHTML</h3>
+
+
+
+
+
+
+		<h3>事件</h3>
+		<p>在React中，所有的事件都被规范化并统一以驼峰形式命名</p>
+		<p>这些事件被自动的绑定上了组件所有方法的作用域，可以直接调用this即</p>
+
+
+		<h4>示例</h4>
+		<script>
+			click => onClick
+			submit => onSubmit
+			change => onChange
+			...
+		</script>
+
+
+		<h4>真实示例</h4>
+		<script>
+			handleClick: function() {
+				alert('hello');
+			},
+			render: function() {
+				return (
+					<button onClick={this.handleClick}>点击<button>
+				)
+			}
+		</script>
+
+
+
+
+		<h3>注释</h3>
+		<p>可以在任何地方进行注释</p>
+		<p>JSX本质上也是JavaScript</p>
+		<script>
+			<div className="container" /* note here */></div>
+
+			<div
+				/*
+					note here
+				*/
+				className="email"></div>
+		</script>
+
+
+
+
+		<h3>样式</h3>
+		<p>对于内联样式，使用方式和普通的JSX语法相同</p>
+		<p>不过注意的时，所有的样式都是驼峰命名写法</p>
+		
+
+		<h4>外部定义样式</h4>
+		<script>
+			var style = {
+				backgroundColor: 'red';
+				marginTop: '20px';
+			};
+
+			<h2	style={style}></h2>
+		</script>
+
+
+		<h4>内部定义样式</h4>
+		<script>
+			<h2 style={{backgroundColor: 'red', marginTop: '20px'}}><h2>
+		</script>
+
+
+		<h3>代码描述</h3>
+		<p>两种写法是相同的，只不过第二种看起来怪怪的（两个大括号）</p>
+
+
+
+
+
+		<h3>JSX转换</h3>
+		<p>JSX只有一个语法糖，其会被编译成标准的JavaScript代码</p>
+
+		<ul>
+			<li>类XML 语法转换成纯JavaScript</li>
+			<li>XML元素、属性和节点转换成React.createElement的参数</li>
+		</ul>
+
+
+		<h4>示例</h4>
+		<script>
+			// 输入(JSX)
+			var Nav;
+			var app = <Nav color="blue">
+
+			// 输出(JS)
+			var app = React.createElement(Nav, {color: 'blue'});
+		</script>
+
+
+		<h4>子节点的转换</h4>
+		<script>
+			// 输入: JSX
+			var Nav, Tab;
+			var app = <Nav color="blue"><Profile>click</Profile></Nav>;
+
+			// 转换后: JSX
+			var app = React.createElement(
+				Nav,
+				{color: "blue"},
+				React.createElement(Profile, null, "click"));
+		</script>
+
+
+
+
+		<h3>JSX陷阱</h3>
+
+
+		<h4>HTML实体</h4>
+		<p>HTML实体可以直接插入到JSX的文本中</p>
+		<script>
+			render: function() {
+				return (
+					<h2>hello $nbsp;$copy;</h2>
+				)
+			}
+		</script>
+
+		<h3>注意:</h3>
+		<p>为了防止XSS攻击，React默认会对所有的字符串进行转义，防止XSS攻击</p>
+		<script>
+			render: function() {
+				return (
+					<h2>{'hello &nbsp;$copy; world'}</h2>
+				)
+			}
+		</script>
+
+		<h3>代码描述</h3>
+		<p>React会直接把这些符号当做字符串输出到页面上</p>
+		<p>有多种绕过的方法，最简单的就是使用Unicode字符</p>
+		<p>必须要确保文件编码和网页编码同时是utf-8</p>
+
+		<script>
+			<div>{'hello © world'}</div>
+		</script>
+
+		<p>另外一种做法就是使用Unicode对应的编号</p>
+
+
+
+		<h4>自定义HTML属性</h4>
+
+		<p>使用自定义属性，必须加data-前缀</p>
+		<p>要不然React不会识别，那么就不会显示</p>
+
+		<script>
+			<div data-custom-attribute="foo">
+		</script>
+
+		<p>但是对于自定义组件，可以添加自定义属性</p>
+		<script>
+			<x-my-component custom-attribute="foo">
+		</script>
+
+		<p>这些属性通过this.props获取到</p>
+
+		<p>以 aria- 开头的 [网络无障碍] 属性可以正常使用</p>
+		<script>
+			<div aria-hidden={true}>
+		</script>
+
+
+
+
+
+
+
+		<h2>拓展</h2>
+
+
+		<h3>不要修改props</h3>
+
+		<p>不建议定义好组件后，在修改props，这是反模式</p>
+		<p>因为React不能帮你检测属性类型，出错后得不到正确的提示，可能导致意想不到的结果</p>
+		<p>所以，尽量不要修改props</p>
+
+		<script>
+			// 该代码不建议使用：
+			var Comment = <Comment />;
+			Comment.props.name = "a";
+			Comment.props.title = "aa";
+		</script>
+
+
+
+		<h3>延展属性</h3>
+
+		<p>JSX的新特性–延展属性</p>
+
+		<script>
+			var props = [];
+			props.foo = x;
+			props.bar = y;
+			var component = <Component {...props}>;
+		</script>
+
+		<h4>上面的 ...便是延展操作符</h4>
+
+		<script>
+			var props = {foo: 'x', bar: 'y'};
+			var component = <Component foo={props.foo} bar={props.bar} />;
+		</script>
+
+		<p>延展属性会把传入对象的属性复制到组件内</p>
+	</body>
+</html>

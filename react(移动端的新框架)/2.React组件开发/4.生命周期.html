@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>生命周期</title>
+		<script src="../react.js"></script>
+		<script src="../react-dom.js"></script>
+		<script src="../browser.min.js"></script>
+		<style>
+			@font-face {
+				font-family:"LED";
+				src:url("font/LED.eot?") format("eot"),
+					url("font/LED.woff") format("woff"),
+					url("font/LED.ttf") format("truetype"),
+					url("font/LED.svg#LED") format("svg");
+				font-weight:normal;
+				font-style:normal;
+			}
+			.ez-digi-clock{
+				font-family : LED;
+				font-size : 40px;
+				background : #70d355;
+				width: 300px;
+				height:60px;
+				line-height : 60px;
+				text-align : right;
+				padding : 10px;
+				letter-spacing : 5px;
+			}	
+		</style>
+	</head>
+	<body>
+		<h1>生命周期</h1>
+		<p>在组件实例的整个周期中，React将在特定的时间点调用以下方法</p>
+		<h2>·componentWillMount() - 组件实例即将挂接（初次渲染）时被调用</h2>
+		<p>这个方法在整个生命周期中只会被调用一次</p>
+		<h2>·componentDidMount() - 组件实例挂接（初次渲染）后被调用</h2>
+		<p>这个方法在整个生命周期中只会被调用一次</p>
+		<h2>·componentWillReceiveProps(nextProps) - 组件实例即将设置新属性时被调用</h2>
+		<p>参数nextProps表示即将应用到组件实例上的新属性值</p>
+		<h3>注意:</h3>
+		<p>这个方法在初次渲染时不会被调用</p>
+		<p>在此方法内调用setState()不会引起重新渲染</p>
+		<h2>·shouldComponentUpdate(nextProps, nextState) - 组件实例即将重新渲染时被调用</h2>
+		<p>使用:参数nextProps传入即将应用到组件实例上的新属性值，参数nextState传入组件实例即将被 设置的状态值</p>
+		<p>···如果这个方法返回false，那么组件实例就不会被重新渲染</p>
+		<p>···新的属性和状态不需要进行重新渲染，否则这个方法都应该返回true</p>
+		<p>这个方法在初次渲染时或通过forceUpdate()方法进行渲染时不会被调用</p>
+		<h2>·componentWillUpdate(nextProps, nextState) - 组件实例即将重新渲染时被调用</h2>
+		<p>这个方法在初次渲染时不会被调用</p>
+		<h3>注意：不能在此方法内调用setState()</h3>
+		<h2>·componentDidUpdate(prevProps, prevState) - 组件实例重新渲染后被调用</h2>
+		<p>这个方法在初次渲染时不会被调用</p>
+		<h2>·componentWillUnmount() - 组件实例即将从DOM树移除时被调用</h2>
+		<p>这个方法在整个生命周期中只会被调用一次</p>
+		<h1>真实示例:</h1>
+		<div id="content"></div>
+		<script type="text/jsx">
+			var _getTime = function(){
+					var _ = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09'],
+					d = new Date(),
+					h = d.getHours(),
+					m = d.getMinutes(),
+					s = d.getSeconds();
+				return [_[h]||h,_[m]||m,_[s]||s].join(":");
+			};
+			var Ele = React.createClass({
+				getInitialState: function(){
+					return {
+						time : _getTime()
+					};
+				},
+				componentDidMount: function(){
+					this.timer = setInterval(function(){
+						this.setState({time: _getTime()});
+					}.bind(this), 1000);
+				},
+				componentWillUnmount: function(){
+					clearInterval(this.timer);
+				},
+				render: function(){
+					return <div className="ez-digi-clock">{this.state.time}</div>;
+				}
+				
+			});
+			React.render(<Ele/>, document.querySelector("#content"));
+		</script>
+	</body>
+</html>

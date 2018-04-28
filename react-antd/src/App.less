@@ -1,0 +1,129 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+.ant-layout-aside {
+  position: relative;
+  min-height: 100%;
+}
+
+.ant-layout-aside .ant-layout-logo {
+  width: 150px;
+  height: 32px;
+  background: #333;
+  border-radius: 6px;
+  margin: 16px 24px 16px 28px;
+}
+
+.ant-layout-aside .ant-layout-sider {
+  width: 100px;
+  background: #404040;
+  position: fixed;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  overflow: auto;
+}
+
+.ant-layout-sider .item {
+  width: 100%;
+  padding-left: 20%;
+  display: block;
+  height: 60px;
+  line-height: 60px;
+  color: #999;
+}
+
+.ant-layout-sider .item:hover {
+  color: #ccc;
+}
+
+.ant-layout-sider .active {
+  color: #ccc;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0px;
+  height: 50px;
+  line-height: 50px;
+  left: 100px;
+  right: 0px;
+  padding-left: 10%;
+  background: rgba(0, 0, 0, .5);
+  color: #cccccc;
+}
+
+.ant-layout-aside .ant-layout-main {
+  margin-left: 100px;
+  margin-bottom: 50px;
+}
+
+.hide {
+  display: none;
+}
+
+.spaceMixin(@i) when (@i >= 0) {
+  .mar-r-@{i} {
+    margin-right: @i + 0px;
+  }
+  .mar-l-@{i} {
+    margin-left: @i + 0px;
+  }
+  .mar-t-@{i} {
+    margin-top: @i + 0px;
+  }
+  .mar-b-@{i} {
+    margin-bottom: @i + 0px;
+  }
+
+  .pad-r-@{i} {
+    padding-right: @i + 0px;
+  }
+  .pad-l-@{i} {
+    padding-left: @i + 0px;
+  }
+  .pad-t-@{i} {
+    padding-top: @i + 0px;
+  }
+  .pad-b-@{i} {
+    padding-bottom: @i + 0px;
+  }
+  .spaceMixin(@i - 5)
+}
+
+.spaceMixin(200);
+
+.wp100 {
+  width: 100%;
+}
+
+.padp-1 {
+  padding: 1%;
+}

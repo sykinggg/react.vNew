@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>React组件</title>
+		<!--组件样式-->
+		<style>
+			@font-face {
+				font-family:"LED";
+				src:url("font/LED.eot?") format("eot"),
+					url("font/LED.woff") format("woff"),
+					url("font/LED.ttf") format("truetype"),
+					url("font/LED.svg#LED") format("svg");
+				font-weight:normal;
+				font-style:normal;
+			}
+			.ez-led{
+				font-family : "LED";
+				font-size : 40px;
+				background : #70d355;
+				width: 300px;
+				height:60px;
+				line-height : 60px;
+				text-align : right;
+				padding : 10px;
+				letter-spacing:5px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>React组件</h1>
+		<p>在React中定义一个组件也是相当的容易，组件就是一个 实现预定义接口的JavaScript类</p>
+		<script>
+//			React.createClass(meta);
+		</script>
+		<p>参数meta是一个实现预定义接口的JavaScript对象，用来 对React组件原型进行扩展</p>
+		<p>在meta中，至少需要实现一个render()方法，而这个方法， 必须而且只能返回一个有效的React元素</p>
+		<p>这意味着，如果你的组件是由多个元素构成的，那么你必须在外边包一个顶层 元素，然后返回这个顶层元素</p>
+		<h3>示例:</h3>
+		<script>
+//			render: function(){
+//				return React.createElement(
+//					"div",null,
+//					React.createElement("div",null,"header"),
+//					React.createElement("div",null,"content"),
+//					React.createElement("div",null,"footer")
+//				)
+//			}
+		</script>
+		<h3>代码描述:</h3>
+		<p>注意 ：你的React组件名称的首字母应当大写， 关于大小写的差异你会在后面发现</p>
+		<p>应该会注意到div元素的样式类是用 className而不是class声明的</p>
+		<div class="ez-lend">hello</div>
+		<h3>使用方法:</h3>
+		<p>组件定义以后，和标准HTML标签一样，可以使用createElement()方法 创建元素</p>
+		<p>第一个参数是我们定义的组件类，而不是标签名字符串</p>
+		<script>
+//			React.createElement(EzledComp);
+		</script>
+		<h1>真实案例:</h1>
+		<script src="../react.js"></script>
+		<script src="../react-dom.js"></script>
+		<!--定义容器-->
+		<div id="content"></div>
+		<script>
+			//定义React组件
+			var EzLedComp = React.createClass({
+				//每个React组件都应该事先render()方法
+				render: function(){
+					var e = React.createElement(
+						"div",
+						{className: "ez-led"},
+						"Hello, React!"
+					);
+					//render()方法应该返回一个React元素
+					return e;
+				}
+			});
+			//创建React元素
+			var el = React.createElement(EzLedComp);
+			//渲染
+			ReactDOM.render(el,document.querySelector("#content"));
+		</script>
+	</body>
+</html>

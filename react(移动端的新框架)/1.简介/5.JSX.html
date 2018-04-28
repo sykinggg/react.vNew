@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>轮子来了：JSX</title>
+		<!--基础-->
+		<script src="../react.js"></script>
+		<!--dom-->
+		<script src="../react-dom.js"></script>
+		<!--jsx-->
+		<script src="../browser.min.js"></script>
+		<style>
+			@font-face {
+				font-family:"LED";
+				src:url("font/LED.eot?") format("eot"),
+					url("font/LED.woff") format("woff"),
+					url("font/LED.ttf") format("truetype"),
+					url("font/LED.svg#LED") format("svg");
+				font-weight:normal;
+				font-style:normal;
+			}
+			.ez-led{
+				font-family : "LED";
+				font-size : 40px;
+				background : #70d355;
+				width: 300px;
+				height:60px;
+				line-height : 60px;
+				text-align : right;
+				padding : 10px;
+				letter-spacing:5px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>轮子来了：JSX</h1>
+		<p>React引入虚拟DOM以后，创建DOM树得在JavaScript里写代码，这使得界面定义 变得相当繁琐</p>
+		<h3>比如我们创建两排的液晶组件得这么写</h3>
+		<script>
+//			render: function(){
+//				return React.createElement(
+//					"div",null,
+//					React.createElement("div",{className:"ez-led"},"Hello"),
+//					React.createElement("div",{className:"ez-led"},"2015-04-06")
+//				)
+//			}
+		</script>
+		<p>而它们被渲染后对应的声明式HTML则简单明了</p>
+		<!--<div>
+			<div class="ez-led">Hello</div>
+			<div class="ex-led">2015-04-06</div>
+		</div>-->
+		<h2>JSX是对JavaScript语法的扩展，它让我们可以在JavaScript代码中以类似HTML 的方式创建React元素</h2>
+		<p>简单的说，每当你需要使用createElement()时， 就把这个函数调用部分用渲染目标HTML替换</p>
+		<h3>注意:</h3>
+		<p>不完全一致，比如class属性 要用className代替</p>
+		<h3>示例:</h3>
+		<script>
+			//JavaScript
+//			var e = React.createElement(
+//				"ul",null,
+//				React.createElement("li",null,"China"),
+//				React,createElement("li",null,"Japan")
+//			);
+			//JSX = JavaScript + XML like extension
+//			var e = 
+//				China
+//				Japan;
+		</script>
+		<p>说实话，这种写法让代码看起来相当闹心。但相比写大段的脚本来创建DOM树， 这至少效率高吧</p>
+		<h1>真实案例</h1>
+		<div id="content"></div>
+		<script type="text/babel">
+			//定义React组件(操定义的首字母大写切记切记！)
+			var Ele = React.createClass({
+				//每个React组件都应该事先render()方法
+				render: function(){
+					var e = 
+					<div>
+						<div className="ez-led">Hello</div>
+						<div className="ez-led">2015-04-05</div>
+					</div>
+					return e;
+				}
+			})
+			//渲染
+			ReactDOM.render(<Ele/>,document.querySelector("#content"));
+		</script>
+	</body>
+</html>

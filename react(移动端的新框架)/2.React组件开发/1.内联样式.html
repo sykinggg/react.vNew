@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>内联样式</title>
+		<style>
+			.ez-lamp{
+				display : inline-block;
+				margin : 5px;
+				width : 30px;
+				height : 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>内联样式</h1>
+		<p>每当需要设定元素的样式，我们总是使用样式类</p>
+		<!--html-->
+		<div style="width:200px;height:200px;"></div>
+		<p>React元素中声明样式，需要给出一个JSON对象，其字段对应样式名称，比如要渲染出 上面的HTML片段</p>
+		<h1>真实案例</h1>
+		<div id="content"></div>
+		<script type="text/jsx">
+			//定义React组件
+			var Ele = React.createClass({
+				render: function(){
+					//取得属性值
+					var color = this.props.color,
+						onoff = this.props.onoff;
+					//亮光颜色
+					var lights = {
+						"off" : "#888",
+						"on" : "#fff"
+					};
+					//透明度
+					var opacity = {
+						"off" : 0.5,
+						"on" : 1.0
+					};
+					//根据属性设置附加的样式
+					var style = {
+						borderRadius: "50%",
+						opacity: opacity[this.props.onoff],
+						// 注意下一行代码中引号内的空格不能删除
+						background:"-webkit-radial-gradient(30% 30%,"+ lights[onoff] + " 5%," + color +" 95%)"
+					};
+					//返回React元素
+					return <span className="ez-lamp" style={style}></span>;
+				}
+			});
+			//渲染React元素
+			React.render(
+				<div>
+					<Ele color="green" onoff="off"/>
+					<Ele color="green" onoff="on"/>
+					<Ele color="red" onoff="off"/>
+					<Ele color="red" onoff="on"/>
+					<Ele color="blue" onoff="off"/>
+					<Ele color="blue" onoff="on"/>
+				</div>,
+				document.querySelector("#content")
+			);
+		</script>
+		<h3>代码描述</h3>
+		<h4>·注意1 - 对应样式名称的字段，需要使用驼峰式命名</h4>
+		<p>比如：border-radius样式需要使用borderRadius来访问</p>
+		<p>background-image 样式需要使用backgroundImage来访问</p>
+		<h4>·注意2 - 样式名称中的供应商前缀，除ms外都需要大写首字母</h4>
+		<p>供应商前缀（-webkit, -moz, -o, -ms），除了ms，其他都需要将首字母大写</p>
+		<p>-webkit-transition应当通过WebkitTransition来访问</p>
+		<p>-ms-transition 则需要通过msTransition来访问</p>
+	</body>
+</html>

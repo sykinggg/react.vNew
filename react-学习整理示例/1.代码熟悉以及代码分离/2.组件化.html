@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+		<script src="../js/react.js"></script>
+		<script src="../js/react-dom.js"></script>
+		<script src="../js/browser.min.js"></script>
+	</head>
+	<body>
+		<div id="content"></div>
+	</body>
+	<script type="text/babel">
+		var CommentBox = React.createClass({displayName: 'CommentBox', 
+			render: function() {
+				return (
+					React.createElement('div', {className: 'commentBox'}, 
+						"Hello, world! I am a CommentBox."
+					)
+				);
+			}
+		});
+		ReactDOM.render(
+			React.createElement(CommentBox, null),
+			document.getElementById('content')
+		);
+	</script>
+	<h3>代码描述</h3>
+	<p>通过 JavaScript 对象传递一些方法到 React.createClass() 来创建一个新的 React 组件</p>
+	<p>其中最重要的方法是 render ，该方法返回一棵 React 组件树，这棵树最终将会渲染成 HTML</p>
+
+	<h3>代码理解</h3>
+	<p>这里的 <div/> 标签不是真正的 DOM 节点；他们是 React div 组件的实例</p>
+	<p>React 是安全的。我们不生成 HTML 字符串，因此默认阻止了 XSS 攻击</p>
+
+	<h3>实例化以及使用</h3>
+	<p>ReactDOM.render() 实例化根组件，启动框架，把标记注入到第二个参数指定的原生的 DOM 元素中</p>
+</html>
