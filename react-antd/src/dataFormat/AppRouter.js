@@ -1,9 +1,11 @@
 import home from '../component/home';
-import about from '../component/about';
+import about from '../component/about/about';
 import topics from '../component/topics';
 import map from '../component/map/map';
 import otherComponent from '../component/otherComponent/otherComponent';
 import interIndex from '../component/interActive/interActiveIndex';
+
+import mapRouter from './mapRouter';
 
 const router = [
 	{
@@ -22,9 +24,10 @@ const router = [
 		component: topics
 	},
 	{
-		link: '/map/aMap',
+		link: '/map',
 		link_name: 'map',
-		component: map
+		component: map,
+		routes: mapRouter
 	},
 	{
 		link: '/other/datePick',
