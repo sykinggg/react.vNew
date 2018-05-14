@@ -1,43 +1,58 @@
-import home from '../component/home';
-import about from '../component/about/about';
-import topics from '../component/topics';
-import map from '../component/map/map';
-import otherComponent from '../component/otherComponent/otherComponent';
-import interIndex from '../component/interActive/interActiveIndex';
-
-import mapRouter from './mapRouter';
+import Loadable from 'react-loadable';
+import loading from '../loading';
 
 const router = [
 	{
 		link: '/',
 		link_name: 'home',
-		component: home
+		component: Loadable({
+			loader: () => import('../component/home'),
+			loading: loading
+		})
 	},
 	{
 		link: '/about',
 		link_name: 'about',
-		component: about
+		component: Loadable({
+			loader: () => import('../component/about/about'),
+			loading: loading
+		})
 	},
 	{
 		link: '/topics',
 		link_name: 'topics',
-		component: topics
+		component: Loadable({
+			loader: () => import('../component/topics'),
+			loading: loading
+		})
 	},
 	{
 		link: '/map',
 		link_name: 'map',
-		component: map,
-		routes: mapRouter
+		component: Loadable({
+			loader: () => import('../component/map/map'),
+			loading: loading
+		}),
+		routes: Loadable({
+			loader: () => import('./mapRouter'),
+			loading: loading
+		})
 	},
 	{
 		link: '/other/datePick',
 		link_name: 'other',
-		component: otherComponent
+		component: Loadable({
+			loader: () => import('../component/otherComponent/otherComponent'),
+			loading: loading
+		})
 	},
 	{
 		link: '/inter/pubSub',
 		link_name: 'inter',
-		component: interIndex
+		component: Loadable({
+			loader: () => import('../component/interActive/interActiveIndex'),
+			loading: loading
+		})
 	}
 ];
 

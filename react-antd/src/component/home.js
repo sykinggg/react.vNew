@@ -6,7 +6,6 @@ class home extends React.Component{
 	render() {
 		return(
 			<div>
-				<Progress/>
 				home
 			</div>
 		)
