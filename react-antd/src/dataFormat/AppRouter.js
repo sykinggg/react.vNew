@@ -27,14 +27,10 @@ const router = [
 		})
 	},
 	{
-		link: '/map',
+		link: '/map/aMap',
 		link_name: 'map',
 		component: Loadable({
 			loader: () => import('../component/map/map'),
-			loading: loading
-		}),
-		routes: Loadable({
-			loader: () => import('./mapRouter'),
 			loading: loading
 		})
 	},
@@ -51,6 +47,14 @@ const router = [
 		link_name: 'inter',
 		component: Loadable({
 			loader: () => import('../component/interActive/interActiveIndex'),
+			loading: loading
+		})
+	},
+	{
+		link: '/read/base',
+		link_name: 'read',
+		component: Loadable({
+			loader: () => import('../component/readFile/index'),
 			loading: loading
 		})
 	}

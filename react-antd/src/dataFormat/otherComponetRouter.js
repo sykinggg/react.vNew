@@ -1,16 +1,22 @@
-import datePick from '../component/otherComponent/datePickIndex';
-import calendar from '../component/otherComponent/calendar';
+import Loadable from 'react-loadable';
+import loading from '../loading';
 
 const router = [
 	{
 		link: '/other/datePick',
 		link_name: 'datePick',
-		component: datePick
+		component: Loadable({
+			loader: () => import('../component/otherComponent/datePickIndex'),
+			loading: loading
+		})
 	},
 	{
 		link: '/other/calendar',
 		link_name: 'calendar',
-		component: calendar
+		component: Loadable({
+			loader: () => import('../component/otherComponent/calendar'),
+			loading: loading
+		})
 	}
 ];
 

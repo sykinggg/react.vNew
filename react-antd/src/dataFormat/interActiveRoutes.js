@@ -1,16 +1,22 @@
-import pubSub from '../component/interActive/interFaces/pubSub';
-import signal from '../component/interActive/interFaces/signalIndex';
+import Loadable from 'react-loadable';
+import loading from '../loading';
 
 const router = [
     {
         link: '/inter/pubSub',
         link_name: 'pubSub',
-        component: pubSub,
+        component: Loadable({
+            loader: () => import('../component/interActive/interFaces/pubSub'),
+            loading: loading
+        }),
     },
     {
         link: '/inter/signal',
         link_name: 'signal',
-        component: signal,
+        component: Loadable({
+            loader: () => import('../component/interActive/interFaces/signalIndex'),
+            loading: loading
+        }),
     },
 ];
 
