@@ -624,7 +624,7 @@ class readFileBase extends React.Component {
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;Clock />{'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;/div>{'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;);{'\n'}
-                                        }
+                                        }{'\n'}
                                     </pre>
                                 </Panel>
                                 <Panel header="事件处理" key="18">
@@ -636,73 +636,73 @@ class readFileBase extends React.Component {
                                     </ul>
 
                                     <pre>
-                                        传统的 HTML
-                                        &#60;button onclick="activateLasers()">
-                                        &nbsp;&nbsp;&nbsp;&nbsp;Activate Lasers
-                                        &#60;/button>
-
-                                        React
-                                        &#60;button onClick=&#123;activateLasers}>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;Activate Lasers
-                                        &#60;/button>
+                                        传统的 HTML{'\n'}
+                                        &#60;button onclick="activateLasers()">{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;Activate Lasers{'\n'}
+                                        &#60;/button>{'\n'}
+                                        {'\n'}
+                                        React{'\n'}
+                                        &#60;button onClick=&#123;activateLasers}>{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;Activate Lasers{'\n'}
+                                        &#60;/button>{'\n'}
                                     </pre>
 
                                     <h4>在 React 中另一个不同是你不能使用返回 false 的方式阻止默认行为</h4>
                                     <p>必须明确的使用 preventDefault</p>
 
                                     <pre>
-                                        传统的 HTML 中阻止链接默认打开一个新页面
-                                        &#60;a href="#" onclick="console.log('The link was clicked.'); return false">
-                                        &nbsp;&nbsp;&nbsp;&nbsp;Click me
-                                        &#60;/a>
-
-                                        React
-                                        function ActionLink() &#123;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;function handleClick(e) &#123;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.preventDefault();
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('The link was clicked.');
-                                        &nbsp;&nbsp;&nbsp;&nbsp;}
-
-                                        &nbsp;&nbsp;&nbsp;&nbsp;return (
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;a href="#" onClick=&#123;handleClick}>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click me
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;/a>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;);
-                                        }
-                                        e 是一个合成事件
-                                        React 根据 W3C spec 来定义这些合成事件
-                                        不需要担心跨浏览器的兼容性问题
-
-                                        使用 React 的时候通常你不需要使用 addEventListener 为一个已创建的 DOM 元素添加监听器
-                                        仅仅需要在这个元素初始渲染的时候提供一个监听器
+                                        传统的 HTML 中阻止链接默认打开一个新页面{'\n'}
+                                        &#60;a href="#" onclick="console.log('The link was clicked.'); return false">{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;Click me{'\n'}
+                                        &#60;/a>{'\n'}
+                                        {'\n'}
+                                        React{'\n'}
+                                        function ActionLink() &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;function handleClick(e) &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.preventDefault();{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('The link was clicked.');{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;}{'\n'}
+                                        {'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;return ({'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;a href="#" onClick=&#123;handleClick}>{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click me{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;/a>{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;);{'\n'}
+                                        }{'\n'}
+                                        e 是一个合成事件{'\n'}
+                                        React 根据 W3C spec 来定义这些合成事件{'\n'}
+                                        不需要担心跨浏览器的兼容性问题{'\n'}
+                                        {'\n'}
+                                        使用 React 的时候通常你不需要使用 addEventListener 为一个已创建的 DOM 元素添加监听器{'\n'}
+                                        仅仅需要在这个元素初始渲染的时候提供一个监听器{'\n'}
                                     </pre>
 
                                     <h5>当你使用 ES6 class 语法来定义一个组件的时候，事件处理器会成为类的一个方法</h5>
                                     <p>Toggle 组件渲染一个让用户切换开关状态的按钮</p>
                                     <pre>
-                                        class Toggle extends React.Component &#123;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;constructor(props) &#123;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super(props);
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.state = &#123;isToggleOn: true};
-
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// This binding is necessary to make `this` work in the callback
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.handleClick = this.handleClick.bind(this);
-                                        &nbsp;&nbsp;&nbsp;&nbsp;}
-
-                                        &nbsp;&nbsp;&nbsp;&nbsp;handleClick() &#123;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.setState(prevState => (&#123;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isToggleOn: !prevState.isToggleOn
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}));
-                                        &nbsp;&nbsp;&nbsp;&nbsp;}
-
-                                        &nbsp;&nbsp;&nbsp;&nbsp;render() &#123;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return (
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;button onClick=&#123;this.handleClick}>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;this.state.isToggleOn ? 'ON' : 'OFF'}
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;/button>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);
-                                        &nbsp;&nbsp;&nbsp;&nbsp;}
-                                        }
+                                        class Toggle extends React.Component &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;constructor(props) &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super(props);{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.state = &#123;isToggleOn: true};{'\n'}
+                                        {'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// This binding is necessary to make `this` work in the callback{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.handleClick = this.handleClick.bind(this);{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;}{'\n'}
+                                        {'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;handleClick() &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.setState(prevState => (&#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isToggleOn: !prevState.isToggleOn{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}));{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;}{'\n'}
+                                        {'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;render() &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return ({'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;button onClick=&#123;this.handleClick}>{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;this.state.isToggleOn ? 'ON' : 'OFF'}{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;/button>{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;}{'\n'}
+                                        }{'\n'}
                                     </pre>
                                     <h3>注意:</h3>
                                     <p>谨慎对待 JSX 回调函数中的 this，类的方法默认是不会绑定 this 的</p>
@@ -715,39 +715,39 @@ class readFileBase extends React.Component {
                                     <h3>如果使用 bind 让你很烦，这里有两种方式可以解决</h3>
                                     <p class="f-c-999">使用属性初始化器来绑定回调函数</p>
                                     <pre>
-                                        class LoggingButton extends React.Component &#123;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;// This syntax ensures `this` is bound within handleClick.
-                                        &nbsp;&nbsp;&nbsp;&nbsp;// Warning: this is *experimental* syntax.
-                                        &nbsp;&nbsp;&nbsp;&nbsp;handleClick = () => &#123;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('this is:', this);
-                                        &nbsp;&nbsp;&nbsp;&nbsp;}
-
-                                        &nbsp;&nbsp;&nbsp;&nbsp;render() &#123;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return (
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;button onClick=&#123;this.handleClick}>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click me
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;/button>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);
-                                        &nbsp;&nbsp;&nbsp;&nbsp;}
-                                        }
+                                        class LoggingButton extends React.Component &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;// This syntax ensures `this` is bound within handleClick.{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;// Warning: this is *experimental* syntax.{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;handleClick = () => &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('this is:', this);{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;}{'\n'}
+                                        {'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;render() &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return ({'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;button onClick=&#123;this.handleClick}>{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click me{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;/button>{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;}{'\n'}
+                                        }{'\n'}
                                     </pre>
 
                                     <p class="f-c-999">可以在回调函数中使用 箭头函数</p>
                                     <pre>
-                                        class LoggingButton extends React.Component &#123;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;handleClick() &#123;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('this is:', this);
-                                        &nbsp;&nbsp;&nbsp;&nbsp;}
-
-                                        &nbsp;&nbsp;&nbsp;&nbsp;render() &#123;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// This syntax ensures `this` is bound within handleClick
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return (
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;button onClick=&#123;(e) => this.handleClick(e)}>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click me
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;/button>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);
-                                        &nbsp;&nbsp;&nbsp;&nbsp;}
-                                        }
+                                        class LoggingButton extends React.Component &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;handleClick() &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log('this is:', this);{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;}{'\n'}
+                                        {'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;render() &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// This syntax ensures `this` is bound within handleClick{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return ({'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;button onClick=&#123;(e) => this.handleClick(e)}>{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click me{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;/button>{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;}{'\n'}
+                                        }{'\n'}
                                     </pre>
                                     <p>使用这个语法有个问题就是每次 LoggingButton 渲染的时候都会创建一个不同的回调函数</p>
                                     <p>如果这个回调函数作为一个属性值传入低阶组件，这些组件可能会进行额外的重新渲染</p>
@@ -756,8 +756,8 @@ class readFileBase extends React.Component {
                                 <Panel header="向事件处理程序传递参数" key="19">
                                     <h3>为事件处理程序传递额外的参数</h3>
                                     <pre>
-                                        &#60;button onClick=&#123;(e) => this.deleteRow(id, e)}>Delete Row&#60;/button>
-                                        &#60;button onClick=&#123;this.deleteRow.bind(this, id)}>Delete Row&#60;/button>
+                                        &#60;button onClick=&#123;(e) => this.deleteRow(id, e)}>Delete Row&#60;/button>{'\n'}
+                                        &#60;button onClick=&#123;this.deleteRow.bind(this, id)}>Delete Row&#60;/button>{'\n'}
                                     </pre>
                                     <h5>描述:</h5>
                                     <p>分别通过 arrow functions 和 Function.prototype.bind 来为事件处理函数传递参数</p>
@@ -767,27 +767,27 @@ class readFileBase extends React.Component {
                                     <h5>注意:</h5>
                                     <p>通过 bind 方式向监听函数传参，在类组件中定义的监听函数，事件对象 e 要排在所传递参数的后面</p>
                                     <pre>
-                                        class Popper extends React.Component&#123;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;constructor()&#123;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super();
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.state = &#123;name:'Hello world!'};
-                                        &nbsp;&nbsp;&nbsp;&nbsp;}
-                                            
-                                        &nbsp;&nbsp;&nbsp;&nbsp;preventPop(name, e)&#123;    //事件对象e要放在最后
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.preventDefault();
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert(name);
-                                        &nbsp;&nbsp;&nbsp;&nbsp;}
-                                            
-                                        &nbsp;&nbsp;&nbsp;&nbsp;render()&#123;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return (
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;div>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;p>hello&#60;/p>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;/* Pass params via bind() method. */}
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;a href="https://reactjs.org" onClick=&#123;this.preventPop.bind(this,this.state.name)}>Click&#60;/a>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;/div>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);
-                                        &nbsp;&nbsp;&nbsp;&nbsp;}
-                                        }
+                                        class Popper extends React.Component&#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;constructor()&#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super();{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.state = &#123;name:'Hello world!'};{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;}{'\n'}
+                                        {'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;preventPop(name, e)&#123;    //事件对象e要放在最后{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e.preventDefault();{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;alert(name);{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;}{'\n'}
+                                        {'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;render()&#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return ({'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;div>{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;p>hello&#60;/p>{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;/* Pass params via bind() method. */}{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;a href="https://reactjs.org" onClick=&#123;this.preventPop.bind(this,this.state.name)}>Click&#60;/a>{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;/div>{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;}{'\n'}
+                                        }{'\n'}
                                     </pre>
                                 </Panel>
                                 <Panel header="条件渲染基础" key="20">
@@ -797,51 +797,51 @@ class readFileBase extends React.Component {
                                         然后让 React 根据它们来更新 UI
                                     </p>
                                     <pre>
-                                        function Greeting(props) &#123;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;const isLoggedIn = props.isLoggedIn;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;if (isLoggedIn) &#123;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return &#60;UserGreeting />;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;}
-                                        &nbsp;&nbsp;&nbsp;&nbsp;return &#60;GuestGreeting />;
-                                        }
+                                        function Greeting(props) &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;const isLoggedIn = props.isLoggedIn;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;if (isLoggedIn) &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return &#60;UserGreeting />;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;}{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;return &#60;GuestGreeting />;{'\n'}
+                                        }{'\n'}
                                     </pre>
                                 </Panel>
                                 <Panel header="元素变量" key="21">
                                     <pre>
-                                        class LoginControl extends React.Component &#123;
-                                            constructor(props) &#123;
-                                                super(props);
-                                                this.handleLoginClick = this.handleLoginClick.bind(this);
-                                                this.handleLogoutClick = this.handleLogoutClick.bind(this);
-                                                this.state = &#123;isLoggedIn: false};
-                                            }
-
-                                            handleLoginClick() &#123;
-                                                this.setState(&#123;isLoggedIn: true});
-                                            }
-
-                                            handleLogoutClick() &#123;
-                                                this.setState(&#123;isLoggedIn: false});
-                                            }
-
-                                            render() &#123;
-                                                const isLoggedIn = this.state.isLoggedIn;
-
-                                                let button = null;
-                                                if (isLoggedIn) &#123;
-                                                        button = &#60;LogoutButton onClick=&#123;this.handleLogoutClick} />;
-                                                    } else &#123;
-                                                        button = &#60;LoginButton onClick=&#123;this.handleLoginClick} />;
-                                                }
-
-                                                return (
-                                                    &#60;div>
-                                                        &#60;Greeting isLoggedIn=&#123;isLoggedIn} />
-                                                        &#123;button}
-                                                    &#60;/div>
-                                                );
-                                            }
-                                        }
+                                        class LoginControl extends React.Component &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;constructor(props) &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super(props);{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.handleLoginClick = this.handleLoginClick.bind(this);{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.handleLogoutClick = this.handleLogoutClick.bind(this);{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.state = &#123;isLoggedIn: false};{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;}{'\n'}
+                                            {'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;handleLoginClick() &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.setState(&#123;isLoggedIn: true});{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;}{'\n'}
+                                            {'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;handleLogoutClick() &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.setState(&#123;isLoggedIn: false});{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;}{'\n'}
+                                            {'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;render() &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const isLoggedIn = this.state.isLoggedIn;{'\n'}
+                                                {'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let button = null;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (isLoggedIn) &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button = &#60;LogoutButton onClick=&#123;this.handleLogoutClick} />;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button = &#60;LoginButton onClick=&#123;this.handleLoginClick} />;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}{'\n'}
+                                                {'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return ({'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;div>{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;Greeting isLoggedIn=&#123;isLoggedIn} />{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;button}{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;/div>{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;}{'\n'}
+                                        }{'\n'}
                                     </pre>
                                 </Panel>
                             </Collapse>
