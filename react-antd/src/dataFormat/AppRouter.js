@@ -9,7 +9,7 @@ import mapRouter from './mapRouter';
 
 const router = [
 	{
-		link: '/',
+		link: '/home',
 		link_name: 'home',
 		component: home
 	},

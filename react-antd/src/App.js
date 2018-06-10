@@ -17,7 +17,9 @@ class LinkJump extends React.Component{
 		const {props} = this.props;
 
 		return(
-			<NavLink className="item" exact to={props.link} >{props.link_name}</NavLink>
+			<NavLink className="item" to={props.link} >
+				{props.link_name}
+			</NavLink>
 		)
 	}
 }
@@ -28,7 +30,7 @@ class LinkContent extends React.Component{
 		const {props} = this.props;
 
 		return(
-			<Route exact path={props.link} component={props.component} />
+			<Route path={props.link} component={props.component} />
 		)
 	}
 }

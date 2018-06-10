@@ -5,6 +5,7 @@ const router = [
 	{
 		link: '/map/aMap',
 		link_name: 'aMap',
+		parent: '/map',
 		component: aMap
 	},
 	{
