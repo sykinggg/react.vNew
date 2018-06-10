@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import { BrowserRouter, Route, NavLink, HashRouter } from "react-router-dom";
 import logo from './logo.svg';
 import './App.less';
 import Body from './component/body';
@@ -47,7 +47,7 @@ class App extends Component {
     }
     render() {
         return (
-			<Router>
+			<BrowserRouter>
 				<LocaleProvider locale={zhCN}>
 					<div className="ant-layout-aside">
 						<aside className="ant-layout-sider">
@@ -60,7 +60,7 @@ class App extends Component {
 						<Footer/>
 					</div>
 				</LocaleProvider>
-			</Router>
+			</BrowserRouter>
         );
     }
 }
