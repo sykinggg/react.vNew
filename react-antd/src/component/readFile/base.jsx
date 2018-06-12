@@ -808,6 +808,22 @@ class readFileBase extends React.Component {
                                 </Panel>
                                 <Panel header="元素变量" key="21">
                                     <pre>
+                                        基础组件{'\n'}
+                                        function UserGreeting(props) &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;return &#60;h1>Welcome back!&#60;/h1>;{'\n'}
+                                        }{'\n'}
+                                        function GuestGreeting(props) &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;return &#60;h1>Please sign up.&#60;/h1>;{'\n'}
+                                        }{'\n'}
+                                        基础组件组成一块相对独立的逻辑点{'\n'}
+                                        function Greeting(props) &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;const isLoggedIn = props.isLoggedIn;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;if (isLoggedIn) &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return &#60;UserGreeting />;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;}{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;return &#60;GuestGreeting />;{'\n'}
+                                        }{'\n'}
+                                        在功能中使用抽离出来的逻辑点{'\n'}
                                         class LoginControl extends React.Component &#123;{'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;constructor(props) &#123;{'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super(props);{'\n'}
@@ -815,25 +831,25 @@ class readFileBase extends React.Component {
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.handleLogoutClick = this.handleLogoutClick.bind(this);{'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.state = &#123;isLoggedIn: false};{'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;}{'\n'}
-                                            {'\n'}
+                                        {'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;handleLoginClick() &#123;{'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.setState(&#123;isLoggedIn: true});{'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;}{'\n'}
-                                            {'\n'}
+                                        {'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;handleLogoutClick() &#123;{'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.setState(&#123;isLoggedIn: false});{'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;}{'\n'}
-                                            {'\n'}
+                                        {'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;render() &#123;{'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const isLoggedIn = this.state.isLoggedIn;{'\n'}
-                                                {'\n'}
+                                        {'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let button = null;{'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (isLoggedIn) &#123;{'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button = &#60;LogoutButton onClick=&#123;this.handleLogoutClick} />;{'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else &#123;{'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;button = &#60;LoginButton onClick=&#123;this.handleLoginClick} />;{'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}{'\n'}
-                                                {'\n'}
+                                        {'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return ({'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;div>{'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;Greeting isLoggedIn=&#123;isLoggedIn} />{'\n'}
@@ -842,6 +858,40 @@ class readFileBase extends React.Component {
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);{'\n'}
                                         &nbsp;&nbsp;&nbsp;&nbsp;}{'\n'}
                                         }{'\n'}
+                                    </pre>
+                                </Panel>
+                                <Panel header="运算符" key="22">
+                                    <p class="f-c-999">可以通过用花括号包裹代码在 JSX 中嵌入任何表达式</p>
+                                    <h3>与运算符 &&</h3>
+                                    <pre>
+                                        function Mailbox(props) &#123;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;const unreadMessages = props.unreadMessages;{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;return({'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;div>{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#60;h1>Hello!&#60;/h1>{'\n'}
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#123;{'\n'}
+                                                        unreadMessages.length > 0 &&{'\n'}
+                                                        &#60;h2>{'\n'}
+                                                            You have &#123;unreadMessages.length} unread messages.{'\n'}
+                                                        &#60;/h2>{'\n'}
+                                                    }{'\n'}
+                                                &#60;/div>{'\n'}
+                                            ){'\n'}
+                                        }{'\n'}
+                                        {'\n'}
+                                        const messages = ['React', 'Re: React', 'Re:Re: React'];{'\n'}
+                                        {'\n'}
+                                        &#60;Mailbox unreadMessages=&#123;messages} />{'\n'}
+                                    </pre>
+                                    <h4>总结：</h4>
+                                    <ul>
+                                        <li>true && expression 返回 expression</li>
+                                        <li>false && expression 返回 false</li>
+                                    </ul>
+                                    <h3>三目运算符</h3>
+                                    <p>条件渲染的另一种方法是使用 JavaScript 的条件运算符 condition ? true : false</p>
+                                    <pre>
+                                        The user is <b>&#123;isLoggedIn ? 'currently' : 'not'}</b> logged in.
                                     </pre>
                                 </Panel>
                             </Collapse>

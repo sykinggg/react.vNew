@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route, NavLink, HashRouter } from "react-router-dom";
+import { BrowserRouter, Route, NavLink, HashRouter, Redirect, Switch } from "react-router-dom";
 import logo from './logo.svg';
 import './App.less';
 import Body from './component/body';
@@ -30,7 +30,7 @@ class LinkContent extends React.Component{
 		const {props} = this.props;
 
 		return(
-			<Route path={props.link} component={props.component} />
+			<Route path={props.link} exact component={props.component} />
 		)
 	}
 }
@@ -55,7 +55,10 @@ class App extends Component {
 							{this.linkJumpDom}
 						</aside>
 						<div className="ant-layout-main">
-							{this.linkContentDom}
+							<Switch>
+								<Redirect from="/" exact to="/home" />
+								{this.linkContentDom}
+							</Switch>
 						</div>
 						<Footer/>
 					</div>

@@ -27,7 +27,7 @@ const router = [
 		})
 	},
 	{
-		link: '/map/aMap',
+		link: '/map',
 		link_name: 'map',
 		component: Loadable({
 			loader: () => import('../component/map/map'),
