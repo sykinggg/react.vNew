@@ -46,6 +46,7 @@ class App extends Component {
 		this.linkContentDom = this.state.router.map((item, key) => <LinkContent key={key} props={item} />);
     }
     render() {
+		console.log(this.state.router);
         return (
 			<BrowserRouter>
 				<LocaleProvider locale={zhCN}>

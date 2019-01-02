@@ -18,6 +18,8 @@ import SiderMenu from '@/components/SiderMenu';
 
 import styles from './BasicLayout.less';
 
+import undefined from '@/pages/404.jsx';
+
 const { Content } = Layout;
 
 const query = {
@@ -181,7 +183,7 @@ class BasicLayout extends React.PureComponent {
                         {...this.props}
                     />
                     <Content className={styles.content} style={contentStyle}>
-                        <Authorized authority={routerConfig} noMatch={<p>Exception403</p>}>
+                        <Authorized authority={routerConfig} noMatch={<p>404</p>}>
                             {children}
                         </Authorized>
                     </Content>

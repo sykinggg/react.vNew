@@ -16,20 +16,20 @@ export default [
                 component: './Welcome.jsx',
             },
             {
-                path: '/text',
-                name: '测试',
+                path: '/study',
+                name: 'study',
                 icon: 'block',
                 routes: [
                     {
-                        path: '/text/1',
-                        name: 1,
+                        path: '/study/base',
+                        name: 'base',
                         icon: 'block',
-                        component: './Text.jsx',
+                        component: './study-base.jsx',
                     }
                 ]
             },
             {
-                component: './404'
+                component: './404.jsx'
             }
         ],
     },

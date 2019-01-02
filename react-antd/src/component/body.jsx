@@ -25,24 +25,24 @@ class LinkContent extends React.Component{
 }
 
 // 默认路由展示
-class RedirectContent extends React.Component{
-	render(){
+// class RedirectContent extends React.Component{
+// 	render(){
 
-		const {props} = this.props;
+// 		const {props} = this.props;
 
-		return(
-			<Redirect from={props.parent} to={props.link} />
-		)
+// 		return(
+// 			<Redirect from={props.parent} to={props.link} />
+// 		)
 		
-	}
-}
+// 	}
+// }
 
 class body extends React.Component{
 	constructor(props){
 		super(props);
 		this.linkJumpDom = this.props.config.router.map((item, key) => <LinkJump key={key} props={item} />);
 		this.linkContentDom = this.props.config.router.map((item, key) => <LinkContent key={key} props={item} />);
-		this.redirect = <RedirectContent props={this.props.config.router[0]} /> 
+		// this.redirect = <RedirectContent props={this.props.config.router[0]} /> 
 	}
 	render(){
 		return(
