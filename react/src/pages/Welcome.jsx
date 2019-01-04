@@ -2,6 +2,9 @@ import React from 'react';
 import router from 'umi/router';
 
 class Welcome extends React.Component{
+	constructor() {
+		super();
+	}
 	render() {
 		return(
 			<div>
