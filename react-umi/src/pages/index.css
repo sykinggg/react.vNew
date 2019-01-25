@@ -1,0 +1,10 @@
+.ant-menu-horizontal {
+  text-align: left !important;
+  display: none;
+}
+.ant-layout-header {
+  padding: 0 !important;
+}
+.header {
+  padding: 0 !important;
+}
