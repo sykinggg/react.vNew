@@ -15,7 +15,10 @@ export default function () {
                     defaultSelectedKeys={['2']}
                     // tslint:disable-next-line:jsx-alignment
                     style={{ lineHeight: '64px', textAlign: 'left' }}>
-                    <Menu.Item key="test"></Menu.Item>
+                    <Menu.Item key="test">111</Menu.Item>
+                    <Menu.Item key="test">222</Menu.Item>
+                    <Menu.Item key="test">33</Menu.Item>
+                    <Menu.Item key="test">44</Menu.Item>
                 </Menu>
             </Header>
             <Layout></Layout>
