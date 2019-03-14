@@ -1,47 +1,54 @@
 import * as React from 'react';
 import './App.scss';
 
-import { Button } from 'antd';
-import logo from './logo.svg';
+// import { Button } from 'antd';
+// import logo from './logo.svg';
 
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
-import About from './view/about';
-import Home from './view/home';
+// import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import HeaderLink from './component/common/headerLink';
+import AboutView from './view/about';
+import HomeView from './view/home';
 
-class App extends React.Component {
-    constructor(props: Readonly<{}>) {
+export interface IState {
+    minHeight: string;
+}
+export default class App extends React.Component<any, IState> {
+    private linkArr: any[] = [];
+
+    constructor(props: any) {
         super(props);
+        this.state = {
+            minHeight: ''
+        }
+        this.linkArr = [
+            {
+                component: HomeView,
+                link: 'home',
+                name: 'home',
+            },
+            {
+                component: AboutView,
+                link: 'about',
+                name: 'about',
+            }
+        ]
     }
+
+    // tslint:disable-next-line:no-empty
+    public componentDidMount() {
+        this.setState({
+            minHeight: document.body.clientHeight + 'px'
+        })
+        window.onresize = () => {
+            this.setState({
+                minHeight: document.body.clientHeight + 'px'
+            })
+        }
+    }
+
     public render() {
         return (
-            <div className="App">
-                <header className="App-header">
-                    <img src={logo} className="App-logo" alt="logo" />
-                    <h1 className="App-title">Welcome to React</h1>
-                </header>
-                <p className="App-intro">
-                    To get started, edit <code>src/App.tsx</code> and save to reload.
-                    <Button type="primary">Button</Button>
-                </p>
-                <Router>
-                    <div>
-                        <nav>
-                            <ul>
-                                <li>
-                                    <Link to="home">home</Link>
-                                </li>
-                                <li>
-                                    <Link to="about">about</Link>
-                                </li>
-                            </ul>
-                        </nav>
-                        <Route path="/home" component={Home} />
-                        <Route path="/about" component={About} />
-                    </div>
-                </Router>
-            </div>
+            <HeaderLink linkArr={this.linkArr} style={{ minHeight: this.state.minHeight }} />
         );
     }
 }
-
-export default App;

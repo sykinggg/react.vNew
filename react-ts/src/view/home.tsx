@@ -1,11 +1,14 @@
 import * as React from 'react';
 
-class Home extends React.Component {
+export default class HomeView extends React.Component {
+    // constructor(props: any) {
+    //     super(props);
+    //     // tslint:disable-next-line:no-console
+    //     console.log(this.props);
+    // }
     public render() {
         return (
-            <div>about</div>
+            <div>home</div>
         )
     }
 }
-
-export default Home;
