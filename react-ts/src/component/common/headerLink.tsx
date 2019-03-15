@@ -1,5 +1,5 @@
 import { Layout, Menu } from 'antd';
-import { BrowserRouter as Router, NavLink, Route } from "react-router-dom";
+import { BrowserRouter as Router, NavLink, Redirect, Route, Switch } from "react-router-dom";
 const { Header } = Layout;
 import * as React from 'react';
 
@@ -11,7 +11,8 @@ export interface IProps {
         link: string,
         component: any
     }>;
-    style: any
+    defaultName: string;
+    style: any;
 }
 
 export default class HeaderLink extends React.Component<IProps, any> {
@@ -22,7 +23,7 @@ export default class HeaderLink extends React.Component<IProps, any> {
     public render() {
         return (
             <Router>
-                <Layout style={this.props.style} className="aaaaa">
+                <Layout style={this.props.style}>
                     <Header className="header">
                         <div className="logo" />
                         <Menu
@@ -41,11 +42,14 @@ export default class HeaderLink extends React.Component<IProps, any> {
                         </Menu>
                     </Header>
                     <Layout>
-                        {this.props.linkArr.map((item, i) => {
-                            return (
-                                <Route exact={item.name === 'home'} key={item.link} path={'/' + item.link} component={item.component} />
-                            )
-                        })}
+                        <Switch>
+                            <Redirect from="/" exact={true} strict={true} to={{ pathname: this.props.defaultName }} />
+                            {this.props.linkArr.map((item, i) => {
+                                return (
+                                    <Route key={item.link} path={'/' + item.link} component={item.component} />
+                                )
+                            })}
+                        </Switch>
                     </Layout>
                 </Layout>
             </Router>

@@ -7,31 +7,39 @@ import './App.scss';
 // import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import HeaderLink from './component/common/headerLink';
 import AboutView from './view/about';
+import ComponentAll from './view/componentAll';
 import HomeView from './view/home';
 
 export interface IState {
     minHeight: string;
+    linkArr: any[];
+    defaultName: string;
 }
 export default class App extends React.Component<any, IState> {
-    private linkArr: any[] = [];
 
     constructor(props: any) {
         super(props);
         this.state = {
-            minHeight: ''
+            defaultName: 'home',
+            linkArr: [
+                {
+                    component: HomeView,
+                    link: 'home',
+                    name: 'home',
+                },
+                {
+                    component: AboutView,
+                    link: 'about',
+                    name: 'about',
+                },
+                {
+                    component: ComponentAll,
+                    link: 'componentAll',
+                    name: 'Component'
+                }
+            ],
+            minHeight: '',
         }
-        this.linkArr = [
-            {
-                component: HomeView,
-                link: 'home',
-                name: 'home',
-            },
-            {
-                component: AboutView,
-                link: 'about',
-                name: 'about',
-            }
-        ]
     }
 
     // tslint:disable-next-line:no-empty
@@ -48,7 +56,7 @@ export default class App extends React.Component<any, IState> {
 
     public render() {
         return (
-            <HeaderLink linkArr={this.linkArr} style={{ minHeight: this.state.minHeight }} />
+            <HeaderLink linkArr={this.state.linkArr} defaultName={this.state.defaultName} style={{ minHeight: this.state.minHeight }} />
         );
     }
 }

@@ -1,25 +1,24 @@
 import * as React from 'react';
 import CustomContent from 'src/component/common/customContent';
-import Home1 from './home/home1';
-import Home2 from './home/home2';
+import Component1 from './component/component1';
+import Component2 from './component/component2';
 
 // tslint:disable-next-line:no-empty-interface
 export interface IProps {}
 // tslint:disable-next-line:no-empty-interface
 export interface IState {}
-
-export default class HomeView extends React.Component<any, any> {
+export default class ComponentAll extends React.Component<any, any> {
     public state = {
-        defaultName: 'home1',
-        fromLink: '/home',
+        defaultName: 'component1',
+        fromLink: '/componentAll',
         linkArr: [
             {
-                component: Home1,
-                name: 'home1'
+                component: Component1,
+                name: 'component1'
             },
             {
-                component: Home2,
-                name: 'home2'
+                component: Component2,
+                name: 'component2'
             }
         ]
     }

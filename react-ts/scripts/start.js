@@ -36,7 +36,7 @@ const isInteractive = process.stdout.isTTY;
 
 // Warn and crash if required files are missing
 if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
-    process.exit(1);
+    // process.exit(1);
 }
 
 // Tools like Cloud9 rely on this.
@@ -66,7 +66,8 @@ choosePort(HOST, DEFAULT_PORT)
             // We have not found a port.
             return;
         }
-        const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
+        // const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
+        const protocol = 'https';
         const appName = require(paths.appPackageJson).name;
         const urls = prepareUrls(protocol, HOST, port);
         // Create a webpack compiler that is configured with custom messages.
@@ -103,5 +104,5 @@ choosePort(HOST, DEFAULT_PORT)
         if (err && err.message) {
             console.log(err.message);
         }
-        process.exit(1);
+        // process.exit(1);
     });

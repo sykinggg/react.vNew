@@ -1,47 +1,29 @@
 import * as React from 'react';
 import './leftLink.scss';
 // tslint:disable-next-line:ordered-imports
-import { Menu, Icon } from 'antd';
-const SubMenu = Menu.SubMenu;
+import { Menu } from 'antd';
+import { NavLink } from 'react-router-dom';
 
 // tslint:disable-next-line:no-empty-interface
 export interface IPorps { }
 // tslint:disable-next-line:no-empty-interface
 export interface IState { }
-export default class LeftLink extends React.Component<IPorps, IState> {
+export default class LeftLink extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
+        // tslint:disable-next-line:no-console
+        console.log(this.props);
     }
     public render() {
         return (
-            <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                <Menu.Item key="1">
-                    <Icon type="pie-chart" />
-                    <span>Option 1</span>
-                </Menu.Item>
-                <Menu.Item key="2">
-                    <Icon type="desktop" />
-                    <span>Option 2</span>
-                </Menu.Item>
-                <SubMenu
-                    key="sub1"
-                    title={<span><Icon type="user" /><span>User</span></span>}
-                >
-                    <Menu.Item key="3">Tom</Menu.Item>
-                    <Menu.Item key="4">Bill</Menu.Item>
-                    <Menu.Item key="5">Alex</Menu.Item>
-                </SubMenu>
-                <SubMenu
-                    key="sub2"
-                    title={<span><Icon type="team" /><span>Team</span></span>}
-                >
-                    <Menu.Item key="6">Team 1</Menu.Item>
-                    <Menu.Item key="8">Team 2</Menu.Item>
-                </SubMenu>
-                <Menu.Item key="9">
-                    <Icon type="file" />
-                    <span>File</span>
-                </Menu.Item>
+            <Menu theme="dark">
+                {this.props.linkArr.map((item: any) => {
+                    return (
+                        <Menu.Item key={item.name}>
+                            <NavLink activeClassName="ant-menu-item-selected" to={item.link}>{item.name}</NavLink>
+                        </Menu.Item>
+                    )
+                })}
             </Menu>
         )
     }
