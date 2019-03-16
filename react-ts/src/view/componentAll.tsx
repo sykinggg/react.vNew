@@ -9,6 +9,7 @@ export interface IProps {}
 export interface IState {}
 export default class ComponentAll extends React.Component<any, any> {
     public state = {
+        breadcrumb: '',
         defaultName: 'component1',
         fromLink: '/componentAll',
         linkArr: [
@@ -37,7 +38,7 @@ export default class ComponentAll extends React.Component<any, any> {
     }
     public render() {
         return (
-            <CustomContent linkArr={this.state.linkArr} defaultName={this.state.defaultName} fromLink={this.state.fromLink} />
+            <CustomContent data={this.state} />
         )
     }
 }

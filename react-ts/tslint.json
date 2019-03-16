@@ -1,4 +1,7 @@
 {
+    "rules": {
+        "no-console": true
+    },
     "extends": [
         "tslint:recommended",
         "tslint-react",

@@ -35,17 +35,17 @@ export default class CustomContent extends React.Component<any, any> {
                     collapsed={this.state.collapsed}
                     onCollapse={this.onCollapse}>
                     <div className="logo" />
-                    <LeftLink linkArr={this.props.linkArr} />
+                    <LeftLink linkArr={this.props.data.linkArr} />
                 </Sider>
                 <Layout>
                     <CustomHeader />
                     <Content style={{ margin: '0 16px' }}>
                         <CustomBreadcrumb />
                         <Switch>
-                            <Redirect from={this.props.fromLink} exact={true} strict={true} to={{ pathname: this.props.defaultName }} />
-                            {this.props.linkArr.map((item: any) => {
+                            <Redirect from={this.props.data.fromLink} exact={true} strict={true} to={{ pathname: this.props.data.defaultName }} />
+                            {this.props.data.linkArr.map((item: any) => {
                                 return (
-                                    <Route exact={item.name === this.props.defaultName} key={item.link} path={item.link} component={item.component} />
+                                    <Route exact={item.name === this.props.data.defaultName} key={item.link} path={item.link} component={item.component} />
                                 )
                             })}
                         </Switch>

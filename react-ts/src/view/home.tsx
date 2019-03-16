@@ -38,7 +38,7 @@ export default class HomeView extends React.Component<any, any> {
     }
     public render() {
         return (
-            <CustomContent linkArr={this.state.linkArr} defaultName={this.state.defaultName} fromLink={this.state.fromLink} />
+            <CustomContent data={this.state} />
         )
     }
 }
