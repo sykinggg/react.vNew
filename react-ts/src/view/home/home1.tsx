@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Tick from 'src/component/study/tick';
 
 // tslint:disable-next-line:no-empty-interface
 export interface IProps {}
@@ -10,7 +11,10 @@ export default class Home1 extends React.Component<any, any> {
     }
     public render() {
         return(
-            <div>home1</div>
+            <div>
+                <p>home1</p>
+                <Tick />
+            </div>
         )
     }
 }
