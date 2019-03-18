@@ -40,7 +40,7 @@ export default class CustomContent extends React.Component<any, any> {
                 <Layout>
                     <CustomHeader />
                     <Content style={{ margin: '0 16px' }}>
-                        <CustomBreadcrumb />
+                        <CustomBreadcrumb data={this.props} />
                         <Switch>
                             <Redirect from={this.props.data.fromLink} exact={true} strict={true} to={{ pathname: this.props.data.defaultName }} />
                             {this.props.data.linkArr.map((item: any) => {

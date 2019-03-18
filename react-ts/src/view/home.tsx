@@ -1,7 +1,7 @@
 import * as React from 'react';
 import CustomContent from 'src/component/common/customContent';
-import Home1 from './home/home1';
 import Home2 from './home/home2';
+import Home1 from './home/study';
 
 // tslint:disable-next-line:no-empty-interface
 export interface IProps {}
@@ -10,12 +10,13 @@ export interface IState {}
 
 export default class HomeView extends React.Component<any, any> {
     public state = {
-        defaultName: 'home1',
+        breadcrumb: '/home/study',
+        defaultName: 'study',
         fromLink: '/home',
         linkArr: [
             {
                 component: Home1,
-                name: 'home1'
+                name: 'study'
             },
             {
                 component: Home2,
@@ -23,6 +24,7 @@ export default class HomeView extends React.Component<any, any> {
             }
         ]
     }
+    public setPathname: (breadcrumb: any) => void;
     constructor(props: any) {
         super(props);
     }

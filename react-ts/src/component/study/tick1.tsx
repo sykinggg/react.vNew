@@ -1,12 +1,11 @@
 import * as React from 'react';
-import Tick1 from './tick1';
 
 // tslint:disable-next-line:no-empty-interface
 export interface IProps { }
 // tslint:disable-next-line:no-empty-interface
 export interface IState { }
 
-export default class Tick extends React.Component<any, any> {
+export default class Tick1 extends React.Component<any, any> {
 
     public time: NodeJS.Timeout;
 
@@ -20,9 +19,8 @@ export default class Tick extends React.Component<any, any> {
     public render() {
         return (
             <div>
-                tick
+                tick1
                 {this.props.date.toLocaleTimeString()}
-                <Tick1 date={this.props.date} />
             </div>
         )
     }

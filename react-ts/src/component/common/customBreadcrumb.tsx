@@ -2,17 +2,17 @@ import * as React from 'react';
 
 import { Breadcrumb } from 'antd';
 
-import { withRouter } from 'react-router-dom';
+// import { withRouter } from 'react-router-dom';
 import './customBreadcrumb.scss';
 
-class CustomBreadcrumb extends React.Component<any, any> {
+export default class CustomBreadcrumb extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
     }
 
     public componentWillReceiveProps() {
         // tslint:disable-next-line:no-console
-        console.log(this.props.location.pathname);
+        console.log(this.props);
     }
 
     public render() {
@@ -30,4 +30,4 @@ class CustomBreadcrumb extends React.Component<any, any> {
     }
 }
 
-export default withRouter(CustomBreadcrumb);
+// export default withRouter(CustomBreadcrumb);
