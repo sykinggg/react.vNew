@@ -2,6 +2,8 @@ import { Button, Card } from 'antd';
 import * as React from 'react';
 import Tick from 'src/component/study/tick';
 
+import StudyCondition from 'src/component/study/condition';
+import CycleKey from 'src/component/study/cycle&Key';
 import './study.scss';
 
 // tslint:disable-next-line:no-empty-interface
@@ -77,10 +79,10 @@ export default class Study extends React.Component<any, any> {
     public render() {
         return(
             <div>
-                <Card title="state&&生命周期">
+                <Card title="state&&生命周期" className="mar-b-16">
                     <Tick date={this.state.date}  />
                 </Card>
-                <Card title="事件绑定">
+                <Card title="事件绑定" className="mar-b-16">
                     <p>将当前dom对象以及当前作用域绑定到方法中</p>
                     <Button type="primary" onClick={this.clickDomData.bind(this, 'clickDomData')}>clickDomData</Button>
                     <p>仅将当前dom对象绑定到方法中</p>
@@ -89,9 +91,11 @@ export default class Study extends React.Component<any, any> {
                     <Button type="primary" onClick={this.clickData}>clickData</Button>
                     <p>注意绑定参数次序限制</p>
                     <pre>
-                        Button type="primary" onClick={this.clickDomData.bind(this, 'clickDomData')}>clickDomData<
+                        onClick=this.clickDomData.bind(this, 'clickDomData')
                     </pre>
                 </Card>
+                <StudyCondition />
+                <CycleKey />
             </div>
         )
     }
