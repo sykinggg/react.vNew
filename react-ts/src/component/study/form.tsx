@@ -1,7 +1,9 @@
 import { Card } from 'antd';
 import * as React from 'react';
+import FormAdvancedSearchInstantiation from './form/advancedSearch';
 import FormHorizontalLoginBarInstantiation from './form/horizontalLoginBar';
 import FormLoginBoxInstantiation from './form/loginBox';
+import FormModalFormInstantiation from './form/modalForm';
 import FormRegisterNewUserInstantiation from './form/registerNewUser';
 
 // tslint:disable-next-line:no-empty-interface
@@ -53,6 +55,8 @@ export default class StudyForm extends React.Component<any, any> {
                 <FormHorizontalLoginBarInstantiation />
                 <FormLoginBoxInstantiation />
                 <FormRegisterNewUserInstantiation />
+                <FormAdvancedSearchInstantiation />
+                <FormModalFormInstantiation />
             </Card>
         )
     }
