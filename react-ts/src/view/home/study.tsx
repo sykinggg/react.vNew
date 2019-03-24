@@ -4,6 +4,7 @@ import Tick from 'src/component/study/tick';
 
 import StudyCondition from 'src/component/study/condition';
 import CycleKey from 'src/component/study/cycle&Key';
+import StudyForm from 'src/component/study/form';
 import './study.scss';
 
 // tslint:disable-next-line:no-empty-interface
@@ -96,6 +97,7 @@ export default class Study extends React.Component<any, any> {
                 </Card>
                 <StudyCondition />
                 <CycleKey />
+                <StudyForm />
             </div>
         )
     }
