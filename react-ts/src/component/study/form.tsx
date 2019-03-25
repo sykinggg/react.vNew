@@ -1,10 +1,14 @@
 import { Card } from 'antd';
 import * as React from 'react';
 import FormAdvancedSearchInstantiation from './form/advancedSearch';
+import FormCustomInstantiation from './form/customForm';
+import FormDataStorage from './form/dataStorage';
+import FormDatePickInstantiation from './form/datePick';
 import FormHorizontalLoginBarInstantiation from './form/horizontalLoginBar';
 import FormLoginBoxInstantiation from './form/loginBox';
-import FormModalFormInstantiation from './form/modalForm';
+import FormModalForm from './form/modalForm';
 import FormRegisterNewUserInstantiation from './form/registerNewUser';
+import FormSelfProcessingFormData from './form/selfProcessingFormData';
 
 // tslint:disable-next-line:no-empty-interface
 export interface IProps {}
@@ -56,7 +60,11 @@ export default class StudyForm extends React.Component<any, any> {
                 <FormLoginBoxInstantiation />
                 <FormRegisterNewUserInstantiation />
                 <FormAdvancedSearchInstantiation />
-                <FormModalFormInstantiation />
+                <FormModalForm />
+                <FormDatePickInstantiation />
+                <FormCustomInstantiation />
+                <FormDataStorage />
+                <FormSelfProcessingFormData />
             </Card>
         )
     }
