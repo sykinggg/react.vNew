@@ -1,6 +1,7 @@
 import { Card } from 'antd';
 import * as React from 'react';
 import FormAdvancedSearchInstantiation from './form/advancedSearch';
+import FormCustomCheck from './form/customCheck';
 import FormCustomInstantiation from './form/customForm';
 import FormDataStorage from './form/dataStorage';
 import FormDatePickInstantiation from './form/datePick';
@@ -65,6 +66,7 @@ export default class StudyForm extends React.Component<any, any> {
                 <FormCustomInstantiation />
                 <FormDataStorage />
                 <FormSelfProcessingFormData />
+                <FormCustomCheck />
             </Card>
         )
     }
