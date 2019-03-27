@@ -5,11 +5,14 @@ import FormCustomCheck from './form/customCheck';
 import FormCustomInstantiation from './form/customForm';
 import FormDataStorage from './form/dataStorage';
 import FormDatePickInstantiation from './form/datePick';
+import FormLayout from './form/formLayout';
+import FormLinkAgeInstantiation from './form/formLinkage';
 import FormHorizontalLoginBarInstantiation from './form/horizontalLoginBar';
 import FormLoginBoxInstantiation from './form/loginBox';
 import FormModalForm from './form/modalForm';
 import FormRegisterNewUserInstantiation from './form/registerNewUser';
 import FormSelfProcessingFormData from './form/selfProcessingFormData';
+import VerifyOtherComponentInstantiation from './form/verifyOtherComponent';
 
 // tslint:disable-next-line:no-empty-interface
 export interface IProps {}
@@ -67,6 +70,9 @@ export default class StudyForm extends React.Component<any, any> {
                 <FormDataStorage />
                 <FormSelfProcessingFormData />
                 <FormCustomCheck />
+                <FormLinkAgeInstantiation />
+                <FormLayout />
+                <VerifyOtherComponentInstantiation />
             </Card>
         )
     }

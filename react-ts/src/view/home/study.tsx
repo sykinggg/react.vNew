@@ -2,9 +2,12 @@ import { Button, Card } from 'antd';
 import * as React from 'react';
 import Tick from 'src/component/study/tick';
 
+import Combination from 'src/component/study/combination';
 import StudyCondition from 'src/component/study/condition';
 import CycleKey from 'src/component/study/cycle&Key';
 import StudyForm from 'src/component/study/form';
+import ReactIdea from 'src/component/study/reactIdea';
+import StateUpgrade from 'src/component/study/stateUpgrade';
 import './study.scss';
 
 // tslint:disable-next-line:no-empty-interface
@@ -98,6 +101,9 @@ export default class Study extends React.Component<any, any> {
                 <StudyCondition />
                 <CycleKey />
                 <StudyForm />
+                <StateUpgrade />
+                <Combination />
+                <ReactIdea />
             </div>
         )
     }
