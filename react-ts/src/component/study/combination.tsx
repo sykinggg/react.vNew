@@ -62,7 +62,7 @@ export default class Combination extends React.Component<any, any> {
         alert(`Welcome aboard, ${this.state.login}!`);
     }
 
-    // react不支持继承支持组合
+    // react不推荐继承推荐组合 继承一时爽 子类火葬场
     public render() {
         return (
             <Card title="组合" className="mar-b-16">
