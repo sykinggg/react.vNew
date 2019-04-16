@@ -19,7 +19,7 @@ export default class LeftLink extends React.Component<any, any> {
             <Menu theme="dark">
                 {this.props.linkArr.map((item: any) => {
                     return (
-                        <Menu.Item key={item.name}>
+                        <Menu.Item key={item.name} >
                             <NavLink activeClassName="ant-menu-item-selected" to={item.link}>{item.name}</NavLink>
                         </Menu.Item>
                     )
