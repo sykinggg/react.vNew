@@ -1,5 +1,6 @@
 import * as React from 'react';
 import CustomContent from 'src/component/common/customContent';
+import Chart from './component/chart';
 import Component1 from './component/component1';
 import Component2 from './component/component2';
 
@@ -13,6 +14,10 @@ export default class ComponentAll extends React.Component<any, any> {
         defaultName: 'component1',
         fromLink: '/componentAll',
         linkArr: [
+            {
+                component: Chart,
+                name: 'chart'
+            },
             {
                 component: Component1,
                 name: 'component1'
