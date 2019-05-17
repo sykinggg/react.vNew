@@ -13,8 +13,8 @@ export default class ReactIdea extends React.Component<any, any> {
     }
 
     public render() {
-        return(
-            <Card title="react 理念">
+        return (
+            <Card title="react 理念" className="mar-b-16">
                 <h3 className="mar-b-16">react 理念</h3>
                 <ul>
                     <li>根据单一功能原则划分组件分级</li>
@@ -30,6 +30,36 @@ export default class ReactIdea extends React.Component<any, any> {
                         </ul>
                     </li>
                     <li>添加反向数据流</li>
+                    <li>
+                        <p>事件绑定注意指向this</p>
+                    </li>
+                    <li>
+                        <p>父组件向子组件传递方法注意this的指向</p>
+                    </li>
+                    <li>
+                        <p>单项数据流是指数据单向改变</p>
+                    </li>
+                    <li>
+                        <p>state 处理组件内部的方法（可变）</p>
+                    </li>
+                    <li>
+                        <p>state 处理组件内部的方法（可变）</p>
+                    </li>
+                    <li>
+                        <p>props 上层组件对于当前组件的控制由外而内不可逆转</p>
+                    </li>
+                    <li>
+                        <p>state & props 都能触发render</p>
+                        <p>state 是组件内部的改变</p>
+                        <p>props 组件外部的改变</p>
+                    </li>
+                    <li>
+                        <p>dom diff 算法 同层比较 如果同层改变则覆盖下属层组件</p>
+                        <p>jsx => js => dom js描述</p>
+                    </li>
+                    <li>
+                        <p>除了render生命周期函数是必须的其余的生命周期函数都是不必须的</p>
+                    </li>
                 </ul>
             </Card>
         )

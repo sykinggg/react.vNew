@@ -5,15 +5,18 @@ import Tick from 'src/component/study/tick';
 import Combination from 'src/component/study/combination';
 import StudyCondition from 'src/component/study/condition';
 import CycleKey from 'src/component/study/cycle&Key';
+import DataRef from 'src/component/study/dataRef';
 import StudyForm from 'src/component/study/form';
 import ReactIdea from 'src/component/study/reactIdea';
+import ReactLife from 'src/component/study/reactLife';
+import ReactSumUp from 'src/component/study/reactSumUp';
 import StateUpgrade from 'src/component/study/stateUpgrade';
 import './study.scss';
 
 // tslint:disable-next-line:no-empty-interface
-export interface IProps {}
+export interface IProps { }
 // tslint:disable-next-line:no-empty-interface
-export interface IState {}
+export interface IState { }
 export default class Study extends React.Component<any, any> {
     public time: NodeJS.Timeout;
     constructor(props: any) {
@@ -81,10 +84,13 @@ export default class Study extends React.Component<any, any> {
     }
 
     public render() {
-        return(
+        return (
             <div>
+                <ReactSumUp />
+                <ReactLife />
+                <DataRef />
                 <Card title="state&&生命周期" className="mar-b-16">
-                    <Tick date={this.state.date}  />
+                    <Tick date={this.state.date} />
                 </Card>
                 <Card title="事件绑定" className="mar-b-16">
                     <p>将当前dom对象以及当前作用域绑定到方法中</p>
@@ -103,7 +109,7 @@ export default class Study extends React.Component<any, any> {
                 <StudyForm />
                 <StateUpgrade />
                 <Combination />
-                <ReactIdea />
+                <ReactIdea className="mar-b-16" />
             </div>
         )
     }

@@ -27,6 +27,10 @@
     to { transform: rotate(360deg); }
 }
 
+.width-100 {
+    width: 100%;
+}
+
 // 循环默认间距
 @for $var from 1 to 400 {
     .mar-r-#{$var*2} {
