@@ -1,16 +1,17 @@
-import { Button, Card } from 'antd';
+// import { Button, Card } from 'antd';
 import * as React from 'react';
-import Tick from 'src/component/study/tick';
+// import Tick from 'src/component/study/tick';
 
-import Combination from 'src/component/study/combination';
-import StudyCondition from 'src/component/study/condition';
-import CycleKey from 'src/component/study/cycle&Key';
-import DataRef from 'src/component/study/dataRef';
-import StudyForm from 'src/component/study/form';
-import ReactIdea from 'src/component/study/reactIdea';
-import ReactLife from 'src/component/study/reactLife';
-import ReactSumUp from 'src/component/study/reactSumUp';
-import StateUpgrade from 'src/component/study/stateUpgrade';
+// import Combination from 'src/component/study/combination';
+// import StudyCondition from 'src/component/study/condition';
+// import CycleKey from 'src/component/study/cycle&Key';
+// import DataRef from 'src/component/study/dataRef';
+// import StudyForm from 'src/component/study/form';
+// import ReactIdea from 'src/component/study/reactIdea';
+// import ReactLife from 'src/component/study/reactLife';
+// import ReactSumUp from 'src/component/study/reactSumUp';
+import ReduxStoreBase from 'src/component/study/redux/reduxStoreBase';
+// import StateUpgrade from 'src/component/study/stateUpgrade';
 import './study.scss';
 
 // tslint:disable-next-line:no-empty-interface
@@ -86,7 +87,8 @@ export default class Study extends React.Component<any, any> {
     public render() {
         return (
             <div>
-                <ReactSumUp />
+                <ReduxStoreBase />
+                {/* <ReactSumUp />
                 <ReactLife />
                 <DataRef />
                 <Card title="state&&生命周期" className="mar-b-16">
@@ -109,7 +111,7 @@ export default class Study extends React.Component<any, any> {
                 <StudyForm />
                 <StateUpgrade />
                 <Combination />
-                <ReactIdea className="mar-b-16" />
+                <ReactIdea className="mar-b-16" /> */}
             </div>
         )
     }

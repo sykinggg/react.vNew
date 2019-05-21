@@ -20,7 +20,7 @@ export default class CustomContent extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
         // tslint:disable-next-line:no-console
-        console.log(this.props);
+        // console.log(this.props);
     }
 
     public onCollapse = (collapsed: boolean) => {

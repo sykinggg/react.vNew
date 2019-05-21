@@ -12,8 +12,8 @@ export default class ReactSumUp extends Component<any, any> {
     public render() {
         return (
             <div>
-                <Card title="总结" className="mar-b-16">
-                    <h3>总结描述</h3>
+                <Card title="react 总结" className="mar-b-16">
+                    <h3>react 总结描述</h3>
                     <ul>
                         <li>
                             <p>JSX</p>
