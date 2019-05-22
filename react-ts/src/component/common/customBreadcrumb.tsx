@@ -12,7 +12,7 @@ export default class CustomBreadcrumb extends React.Component<any, any> {
 
     public componentWillReceiveProps() {
         // tslint:disable-next-line:no-console
-        console.log(this.props);
+        // console.log(this.props);
     }
 
     public render() {

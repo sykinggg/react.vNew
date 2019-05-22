@@ -185,6 +185,17 @@ export default class ReactSumUp extends Component<any, any> {
                                 </li>
                             </ul>
                         </li>
+                        <li>
+                            <p>组件细分</p>
+                            <ul>
+                                <li>ui 组件: 仅为页面渲染 ui逻辑</li>
+                                <li>容器 组件: 仅为逻辑处理（官方推荐的状态升级） (数据|功能)逻辑</li>
+                                <li>
+                                    <p>无状态组件：也就是是有render方法（也可以理解为一个函数接受一个props进行ui渲染——简单的ui 组件）</p>
+                                    <p>性能高 => 也就是单独函数不存在当前组件状态</p>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </Card>
             </div>
