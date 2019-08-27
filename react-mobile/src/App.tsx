@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
-import appStyle from './App.module.scss'
+import appStyle from './App.module.scss';
+import { Button } from 'antd-mobile';
 
 const App: React.FC = () => {
     return (
@@ -19,6 +20,7 @@ const App: React.FC = () => {
                     Learn React
                 </a>
             </header>
+            <Button type="primary">Button</Button>
         </div>
     );
 }
