@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Button from '@material-ui/core/Button';
 import clsx from 'clsx';
@@ -19,6 +19,12 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import Link from '@material-ui/core/Link';
+import Container from '@material-ui/core/Container';
+
+import AboutView from './view/about';
+import ComponentAll from './view/componentAll';
+import HomeView from './view/home';
 
 const drawerWidth = 240;
 
@@ -83,6 +89,9 @@ const useStyles = makeStyles((theme: Theme) =>
             }),
             marginLeft: 0,
         },
+        link: {
+            margin: theme.spacing(1),
+        },
     }),
 );
 
@@ -90,7 +99,30 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function app() {
     const classes = useStyles();
     const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+
+    const [routerObj, setRoute] = useState({
+        defaultName: 'home',
+        linkArr: [
+            {
+                component: HomeView,
+                link: 'home',
+                name: 'home',
+            },
+            {
+                component: AboutView,
+                link: 'about',
+                name: 'about',
+            },
+            {
+                component: ComponentAll,
+                link: 'componentAll',
+                name: 'Component'
+            }
+        ],
+        minHeight: '',
+    })
+
+    const [open, setOpen] = useState(false);
 
     function handleDrawerOpen() {
         setOpen(true);
@@ -99,7 +131,7 @@ export default function app() {
     function handleDrawerClose() {
         setOpen(false);
     }
-    const [state, setState] = React.useState({
+    const [state, setState] = useState({
         top: false,
         left: false,
         bottom: false,
@@ -130,6 +162,22 @@ export default function app() {
             onKeyDown={toggleDrawer(side, false)}
         >
             <List>
+                {routerObj.linkArr.map((item, index) => (
+                    <Link href={'/' + item.link} className={classes.link}>
+                        <ListItem button key={item.link} >
+                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                            <ListItemText primary={item.name} />
+                        </ListItem>
+                    </Link>
+                ))}
+                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                    <ListItem button key={text}>
+                        <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                        <ListItemText primary={text} />
+                    </ListItem>
+                ))}
+            </List>
+            {/* <List>
                 {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
                     <ListItem button key={text}>
                         <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
@@ -145,7 +193,7 @@ export default function app() {
                         <ListItemText primary={text} />
                     </ListItem>
                 ))}
-            </List>
+            </List> */}
         </div>
     );
 
@@ -175,7 +223,6 @@ export default function app() {
             </List>
         </div>
     );
-
     return (
         <div className={classes.root}>
             <CssBaseline />
@@ -195,10 +242,10 @@ export default function app() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Button onClick={toggleDrawer('left', true)}>Open Left</Button>
-                    <Button onClick={toggleDrawer('right', true)}>Open Right</Button>
-                    <Button onClick={toggleDrawer('top', true)}>Open Top</Button>
-                    <Button onClick={toggleDrawer('bottom', true)}>Open Bottom</Button>
+                    {/* <Button onClick={toggleDrawer('left', true)}>Open Left drawer</Button>
+                    <Button onClick={toggleDrawer('right', true)}>Open Right drawer</Button>
+                    <Button onClick={toggleDrawer('top', true)}>Open Top drawer</Button>
+                    <Button onClick={toggleDrawer('bottom', true)}>Open Bottom drawer</Button> */}
                     <SwipeableDrawer
                         open={state.left}
                         onClose={toggleDrawer('left', false)}
@@ -206,7 +253,7 @@ export default function app() {
                     >
                         {sideList('left')}
                     </SwipeableDrawer>
-                    <SwipeableDrawer
+                    {/* <SwipeableDrawer
                         anchor="top"
                         open={state.top}
                         onClose={toggleDrawer('top', false)}
@@ -229,16 +276,23 @@ export default function app() {
                         onOpen={toggleDrawer('right', true)}
                     >
                         {sideList('right')}
-                    </SwipeableDrawer>
+                    </SwipeableDrawer> */}
                     <Typography variant="h6" noWrap>
                         Persistent drawer
                     </Typography>
                 </Toolbar>
             </AppBar>
-            
-            <main
+            <Container maxWidth={false}>
+                {/* {routerObj.linkArr.map((item, i) => {
+                    return (
+                        <Route key={item.link} path={'/' + item.link} component={item.component} />
+                    )
+                })} */}
+                <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }} />
+            </Container>
+            {/* <main
                 className={clsx(classes.content, {
-                    [classes.contentShift]: open,
+                    [classes.contentShift]: open&&false,
                 })}
             >
                 <div className={classes.drawerHeader} />
@@ -265,7 +319,7 @@ export default function app() {
                     nibh sit. Ornare aenean euismod elementum nisi quis eleifend. Commodo viverra maecenas
                     accumsan lacus vel facilisis. Nulla posuere sollicitudin aliquam ultrices sagittis orci a.
                 </Typography>
-            </main>
+            </main> */}
         </div>
     );
 }
