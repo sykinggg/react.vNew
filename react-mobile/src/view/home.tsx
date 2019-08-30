@@ -15,7 +15,7 @@ export default class HomeView extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
     }
-    public componentWillMount() {
+    public componentDidMount() {
         // const linkArr = this.state.linkArr;
         // linkArr.map((item: any) => {
         //     item.link = this.props.match.url + '/' + item.name;

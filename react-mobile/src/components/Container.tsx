@@ -21,37 +21,47 @@ import React, { useState } from 'react';
 // icons
 
 import { 
+    Container,
     CssBaseline,
     makeStyles,
     useTheme,
     Theme,
     createStyles,
 } from '@material-ui/core';
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-import appHeaderBar from './components/AppHeaderBar';
-import container from './components/Container';
+import appHeaderBar from './AppHeaderBar';
+
+import { RouterList } from '../router';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
-        root: {
-            display: 'flex',
+        content: {
+            flexGrow: 1,
+            // padding: theme.spacing(3),
+            paddingTop: theme.spacing(8),
+            transition: theme.transitions.create('margin', {
+                easing: theme.transitions.easing.sharp,
+                duration: theme.transitions.duration.leavingScreen,
+            }),
+            // marginLeft: -drawerWidth,
         },
     }),
 );
 
 
-export default function app() {
+export default function container() {
     const classes = useStyles();
     const theme = useTheme();
     
     return (
-        <div className={classes.root}>
-            <CssBaseline />
-            <Router>
-                {appHeaderBar()}
-                {container()}
-            </Router>
-        </div>
+        <Container maxWidth={false} className={classes.content}>
+            {RouterList.linkArr.map((item, i) => {
+                return (
+                    <Route key={item.link} path={'/' + item.link} component={item.component} />
+                )
+            })}
+            {/* <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }} /> */}
+        </Container>
     );
 }
