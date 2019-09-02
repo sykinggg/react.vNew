@@ -1,33 +1,33 @@
 import React from 'react';
-import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
+// import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
+// import List from '@material-ui/core/List';
+// import ListItem from '@material-ui/core/ListItem';
+// import ListItemText from '@material-ui/core/ListItemText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogActions from '@material-ui/core/DialogActions';
 import Dialog from '@material-ui/core/Dialog';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Radio from '@material-ui/core/Radio';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import RadioGroup from '@material-ui/core/RadioGroup';
+// import Radio from '@material-ui/core/Radio';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-const options = [
-    'None',
-    'Atria',
-    'Callisto',
-    'Dione',
-    'Ganymede',
-    'Hangouts Call',
-    'Luna',
-    'Oberon',
-    'Phobos',
-    'Pyxis',
-    'Sedna',
-    'Titania',
-    'Triton',
-    'Umbriel',
-];
+// const options = [
+//     'None',
+//     'Atria',
+//     'Callisto',
+//     'Dione',
+//     'Ganymede',
+//     'Hangouts Call',
+//     'Luna',
+//     'Oberon',
+//     'Phobos',
+//     'Pyxis',
+//     'Sedna',
+//     'Titania',
+//     'Triton',
+//     'Umbriel',
+// ];
 
 export interface ConfirmationDialogRawProps {
     classes: Record<'paper', string>;
@@ -36,10 +36,12 @@ export interface ConfirmationDialogRawProps {
     value: string;
     open: boolean;
     onClose: (value?: string) => void;
+    Component: any;
+    title?: string;
 }
 
-function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
-    const { onClose, value: valueProp, open, ...other } = props;
+export default function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
+    const { onClose, value: valueProp, open, Component, title, ...other } = props;
     const [value, setValue] = React.useState(valueProp);
     const radioGroupRef = React.useRef<HTMLElement>(null);
 
@@ -63,6 +65,12 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
         onClose(value);
     }
 
+    function messageHandle(message?: any) {
+        console.log('dialog 内部的 message 回掉函数');
+        console.log(message);
+        setValue(message);
+    }
+
     function handleChange(event: React.ChangeEvent<{}>, newValue: string) {
         setValue(newValue);
     }
@@ -75,11 +83,14 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
             onEntering={handleEntering}
             aria-labelledby="confirmation-dialog-title"
             open={open}
-            {...other}
-        >
-            <DialogTitle id="confirmation-dialog-title">Phone Ringtone</DialogTitle>
+            {...other}>
+            <DialogTitle id="confirmation-dialog-title">{title || 'Phone Ringtone'}</DialogTitle>
             <DialogContent dividers>
-                <RadioGroup
+                <Component
+                    messageHandle={messageHandle}
+                    defaultMessage={value}
+                />
+                {/* <RadioGroup
                     ref={radioGroupRef}
                     aria-label="ringtone"
                     name="ringtone"
@@ -89,82 +100,82 @@ function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
                     {options.map(option => (
                         <FormControlLabel value={option} key={option} control={<Radio />} label={option} />
                     ))}
-                </RadioGroup>
+                </RadioGroup> */}
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleCancel} color="primary">
                     Cancel
-        </Button>
+                </Button>
                 <Button onClick={handleOk} color="primary">
                     Ok
-        </Button>
+                </Button>
             </DialogActions>
         </Dialog>
     );
 }
 
-const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-        root: {
-            width: '100%',
-            maxWidth: 360,
-            backgroundColor: theme.palette.background.paper,
-        },
-        paper: {
-            width: '80%',
-            maxHeight: 435,
-        },
-    }),
-);
+// const useStyles = makeStyles((theme: Theme) =>
+//     createStyles({
+//         root: {
+//             width: '100%',
+//             maxWidth: 360,
+//             backgroundColor: theme.palette.background.paper,
+//         },
+//         paper: {
+//             width: '80%',
+//             maxHeight: 435,
+//         },
+//     }),
+// );
 
-export default function ConfirmationDialog(props?: any) {
-    const classes = useStyles(props);
-    const [open, setOpen] = React.useState(false);
-    const [value, setValue] = React.useState('Dione');
+// export default function ConfirmationDialog(props?: any) {
+//     const classes = useStyles(props);
+//     const [open, setOpen] = React.useState(false);
+//     const [value, setValue] = React.useState('Dione');
 
-    function handleClickListItem() {
-        setOpen(true);
-    }
+//     function handleClickListItem() {
+//         setOpen(true);
+//     }
 
-    function handleClose(newValue?: string) {
-        setOpen(false);
+//     function handleClose(newValue?: string) {
+//         setOpen(false);
 
-        if (newValue) {
-            setValue(newValue);
-        }
-    }
+//         if (newValue) {
+//             setValue(newValue);
+//         }
+//     }
 
-    return (
-        <div className={classes.root}>
-            <List component="div" role="list">
-                <ListItem button divider disabled role="listitem">
-                    <ListItemText primary="Interruptions" />
-                </ListItem>
-                <ListItem
-                    button
-                    divider
-                    aria-haspopup="true"
-                    aria-controls="ringtone-menu"
-                    aria-label="phone ringtone"
-                    onClick={handleClickListItem}
-                    role="listitem"
-                >
-                    <ListItemText primary="Phone ringtone" secondary={value} />
-                </ListItem>
-                <ListItem button divider disabled role="listitem">
-                    <ListItemText primary="Default notification ringtone" secondary="Tethys" />
-                </ListItem>
-                <ConfirmationDialogRaw
-                    classes={{
-                        paper: classes.paper,
-                    }}
-                    id="ringtone-menu"
-                    keepMounted
-                    open={open}
-                    onClose={handleClose}
-                    value={value}
-                />
-            </List>
-        </div>
-    );
-}
+//     return (
+//         <div className={classes.root}>
+//             <List component="div" role="list">
+//                 <ListItem button divider disabled role="listitem">
+//                     <ListItemText primary="Interruptions" />
+//                 </ListItem>
+//                 <ListItem
+//                     button
+//                     divider
+//                     aria-haspopup="true"
+//                     aria-controls="ringtone-menu"
+//                     aria-label="phone ringtone"
+//                     onClick={handleClickListItem}
+//                     role="listitem"
+//                 >
+//                     <ListItemText primary="Phone ringtone" secondary={value} />
+//                 </ListItem>
+//                 <ListItem button divider disabled role="listitem">
+//                     <ListItemText primary="Default notification ringtone" secondary="Tethys" />
+//                 </ListItem>
+//                 <ConfirmationDialogRaw
+//                     classes={{
+//                         paper: classes.paper,
+//                     }}
+//                     id="ringtone-menu"
+//                     keepMounted
+//                     open={open}
+//                     onClose={handleClose}
+//                     value={value}
+//                 />
+//             </List>
+//         </div>
+//     );
+// }

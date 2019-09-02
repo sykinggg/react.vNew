@@ -130,7 +130,6 @@ export default function appHeaderBar() {
                     {sideList('right')}
                 </SwipeableDrawer> */}
                 <Typography variant="h6" noWrap>
-                    Persistent drawer111
                     sideList状态：{JSON.stringify(state.left)}
                 </Typography>
             </Toolbar>

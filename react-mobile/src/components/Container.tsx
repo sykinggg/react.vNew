@@ -28,11 +28,10 @@ import {
     Theme,
     createStyles,
 } from '@material-ui/core';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
-import appHeaderBar from './AppHeaderBar';
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
 import { RouterList } from '../router';
+import undefinedComponent from './404';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -53,14 +52,22 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function container() {
     const classes = useStyles();
     const theme = useTheme();
+    const exact = false;
     
     return (
         <Container maxWidth={false} className={classes.content}>
-            {RouterList.linkArr.map((item, i) => {
-                return (
-                    <Route key={item.link} path={'/' + item.link} component={item.component} />
-                )
-            })}
+            {/* 路由匹配完全默认路由 */}
+            {/* <Redirect from='/' to={'/' + RouterList.linkArr[0].link} exact={exact} /> */}
+            <Switch>
+                <Route path="/" component={RouterList.linkArr[0].component} exact />
+                {/* <Redirect from='/' to={'/' + RouterList.linkArr[0].link} exact={exact} /> */}
+                {RouterList.linkArr.map((item, i) => {
+                    return (
+                        <Route key={item.link} path={'/' + item.link} component={item.component} />
+                    )
+                })}
+                <Route component={undefinedComponent} />
+            </Switch>
             {/* <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }} /> */}
         </Container>
     );
