@@ -7,6 +7,38 @@ export interface Iinterview {
 
 export const reactInterviewContainerData: Iinterview[] = [
     {
+        name: 'mixin、hoc、render props、react-hooks',
+        path: lazy(() => import('./react/ComponenthighFun'))
+    },
+    {
+        name: '组件/逻辑复用',
+        path: lazy(() => import('./react/ComponentMultiplexing'))
+    },
+    {
+        name: '组件通信',
+        path: lazy(() => import('./react/ComponentCommunication'))
+    },
+    {
+        name: 'setState异步&&同步',
+        path: lazy(() => import('./react/SetstateAdjectiveAsync'))
+    },
+    {
+        name: '请求应该放在哪个生命周期中',
+        path: lazy(() => import('./react/RequestLifeHook'))
+    },
+    {
+        name: 'React生命周期',
+        path: lazy(() => import('./react/ReactLifeHook'))
+    },
+    {
+        name: '虚拟DOM',
+        path: lazy(() => import('./react/VirtualDom'))
+    },
+    {
+        name: '框架 && 原生',
+        path: lazy(() => import('./react/FrameNative'))
+    },
+    {
         name: '声明式编程',
         path: lazy(() => import('./DeslarativeProgram'))
     },

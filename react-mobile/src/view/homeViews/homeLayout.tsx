@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 
-export default function Home(props: any) {
+export default function homeLayout(props: any) {
     return (
         <Fragment>
-            Home
+            homeLayout
         </Fragment>
     )
 }
