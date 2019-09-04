@@ -38,10 +38,11 @@ export interface ConfirmationDialogRawProps {
     onClose: (value?: string) => void;
     Component: any;
     title?: string;
+    reactInterviewContainerData?: any[];
 }
 
 export default function ConfirmationDialogRaw(props: ConfirmationDialogRawProps) {
-    const { onClose, value: valueProp, open, Component, title, ...other } = props;
+    const { onClose, value: valueProp, open, Component, reactInterviewContainerData, title, ...other } = props;
     const [value, setValue] = React.useState(valueProp);
     const radioGroupRef = React.useRef<HTMLElement>(null);
 
@@ -89,6 +90,7 @@ export default function ConfirmationDialogRaw(props: ConfirmationDialogRawProps)
                 <Component
                     messageHandle={messageHandle}
                     defaultMessage={value}
+                    reactInterviewContainerData={reactInterviewContainerData}
                 />
                 {/* <RadioGroup
                     ref={radioGroupRef}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Suspense } from 'react';
 
 // component
 // import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
@@ -20,7 +20,7 @@ import React, { useState } from 'react';
 
 // icons
 
-import { 
+import {
     Container,
     CssBaseline,
     makeStyles,
@@ -30,8 +30,9 @@ import {
 } from '@material-ui/core';
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
-import { RouterList } from '../router';
+import { RouterList, TextRouter } from '../router';
 import undefinedComponent from './404';
+import AsyncComponent from './common/AsyncComponent';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -48,24 +49,41 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
+// function asyncComponent(Component: any) {
+//     return(
+//         <Suspense fallback={<div>Loading...</div>}>
+//             <Component/>
+//         </Suspense>
+//     )
+// }
 
 export default function container() {
     const classes = useStyles();
     const theme = useTheme();
     const exact = false;
-    
+
     return (
         <Container maxWidth={false} className={classes.content}>
             {/* 路由匹配完全默认路由 */}
             {/* <Redirect from='/' to={'/' + RouterList.linkArr[0].link} exact={exact} /> */}
             <Switch>
-                <Route path="/" component={RouterList.linkArr[0].component} exact />
+
+                {/* {asyncComponent(TextRouter)} */}
+                {/* <Suspense fallback={<div>Loading...</div>}><TextRouter/></Suspense> */}
+                <Route path="/" render={() => <AsyncComponent LoadAsyncComponent={RouterList.linkArr[0].component} />} exact />
+                {/* <Route path="/" component={RouterList.linkArr[0].component} exact /> */}
                 {/* <Redirect from='/' to={'/' + RouterList.linkArr[0].link} exact={exact} /> */}
                 {RouterList.linkArr.map((item, i) => {
-                    return (
-                        <Route key={item.link} path={'/' + item.link} component={item.component} />
-                    )
-                })}
+                    if (item.synchronize) {
+                        return (
+                            <Route key={item.link} path={'/' + item.link} component={item.component} />
+                        )
+                    } else {
+                        return (
+                            < Route key = { item.link } path = { '/' + item.link } render = {(props) => <AsyncComponent LoadAsyncComponent={item.component} />} />
+                        )
+                    }
+        })}
                 <Route component={undefinedComponent} />
             </Switch>
             {/* <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }} /> */}
