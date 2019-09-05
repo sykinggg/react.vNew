@@ -9,7 +9,8 @@ export default function VirtualDom(props: any) {
     componentWillMount
     componentWillReceiveProps
     componentWillUpdate
-只保留UNSAVE_前缀的三个函数
+
+    生命周期基本概念 普通视角
 
 挂载阶段:
     constructor: 
@@ -67,6 +68,128 @@ export default function VirtualDom(props: any) {
         当的组件被卸载或者销毁了就会调用，
         可以在这个函数里去清除一些定时器，
         取消网络请求，清理无效的DOM元素等垃圾清理工作
+
+    新版本总结以及使用建议 从Fiber的角度
+
+使用getDerivedStateFromProps 替换 componentWillMount
+使用getSnapshotBeforeUpdate 替换 componentWillUpdate
+避免使用componentWillReceiveProps
+
+正是由于上述提到的 Fiber
+
+React 可以分成 reconciliation 与 commit 两个阶段
+
+reconciliation：
+
+    1.componentWillMount
+
+    2.componentWillReceiveProps
+
+    3.shouldComponentUpdate
+
+    4.componentWillUpdate
+
+commit：
+
+    1.componentDidMount
+
+    2.componentDidUpdate
+
+    3.componentWillUnmount
+
+隐藏的关键：
+
+    在 Fiber 中，reconciliation 阶段进行了任务分割，
+    涉及到 暂停 和 重启，
+    因此可能会导致 reconciliation 中
+    生命周期函数在一次更新渲染循环中被 多次调用 的情况，
+    产生一些意外错误
+
+class Component extends React.Component {
+
+    // 替换 componentWillReceiveProps ，
+    // 初始化和 update 时被调用
+    // 静态函数，无法使用 this
+    static getDerivedStateFromProps(
+        nextProps, 
+        prevState
+    ) {}
+
+    // 判断是否需要更新组件
+    // 可以用于组件性能优化
+    shouldComponentUpdate(
+        nextProps, 
+        nextState
+    ) {}
+
+    // 组件被挂载后触发
+    componentDidMount() {}
+
+    // 替换 componentWillUpdate
+    // 可以在更新之前获取最新 dom 数据
+    getSnapshotBeforeUpdate() {}
+
+    // 组件更新后调用
+    componentDidUpdate() {}
+
+    // 组件即将销毁
+    componentWillUnmount() {}
+    
+    复制代码// 组件已销毁
+    componentDidUnMount() {}
+}
+
+使用建议:
+
+    1.在constructor初始化 state；
+
+    2.在componentDidMount中进行事件监听，
+    并在componentWillUnmount中解绑事件；
+
+    3.在componentDidMount中进行数据的请求，
+    而不是在componentWillMount；
+
+    4.需要根据 props 更新 state 时，
+    使用getDerivedStateFromProps
+    (nextProps, prevState)；
+    旧 props 需要自己存储，以便比较
+
+public static getDerivedStateFromProps
+    (nextProps, prevState) 
+{
+    // 当新 props 中的 data 发生变化时，
+        同步更新到 state 上
+    if (nextProps.data !== prevState.data) {
+        return {
+            data: nextProps.data
+        }
+    } else {
+        return null1
+    }
+}
+
+    5.可以在componentDidUpdate监听 props 或者 state 的变化
+
+    componentDidUpdate(prevProps) {
+        // 当 id 发生变化时，重新获取数据
+        if (this.props.id !== prevProps.id) {
+            this.fetchData(this.props.id);
+        }
+    }
+
+    6.在componentDidUpdate使用setState时，
+    必须加条件，否则将进入死循环；
+
+    7.getSnapshotBeforeUpdate(prevProps, prevState)
+    可以在更新之前获取最新的渲染数据，
+    它的调用是在 render 之后， mounted 之前；
+
+    8.shouldComponentUpdate: 
+        默认每次调用setState，一定会最终走到 diff 阶段，
+        但可以通过shouldComponentUpdate的生命钩子
+        返回false来直接阻止后面的逻辑执行，
+        通常是用于做条件渲染，优化渲染的性能。
+
                             `);
     const [title, setTitle] = React.useState('React生命周期');
 

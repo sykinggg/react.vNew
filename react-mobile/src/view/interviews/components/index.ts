@@ -7,6 +7,34 @@ export interface Iinterview {
 
 export const reactInterviewContainerData: Iinterview[] = [
     {
+        name: 'React高阶组件',
+        path: lazy(() => import('./react/HigherComponent'))
+    },
+    {
+        name: 'fiber',
+        path: lazy(() => import('./react/FiberAlgorithm'))
+    },
+    {
+        name: 'redux异步中间件',
+        path: lazy(() => import('./react/ReduxAsyncMiddleware'))
+    },
+    {
+        name: 'redux与mobx的区别',
+        path: lazy(() => import('./react/ReduxMobx'))
+    },
+    {
+        name: 'react-redux的工作流程',
+        path: lazy(() => import('./react/ReactReduxWorkFlow'))
+    },
+    {
+        name: 'redux的工作流程',
+        path: lazy(() => import('./react/ReduxWorkFlow'))
+    },
+    {
+        name: 'Time Slice',
+        path: lazy(() => import('./react/TimeSlice'))
+    },
+    {
         name: 'mixin、hoc、render props、react-hooks',
         path: lazy(() => import('./react/ComponenthighFun'))
     },

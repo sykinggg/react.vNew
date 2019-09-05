@@ -9,7 +9,7 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { Axios } from '../../axios';
 
 import axios from 'axios';
-import PositionedSnackbar from '../../components/common/PositionedSnackbar';
+import PositionedSnackbar, { IPositionedSnackbarProps } from '../../components/common/PositionedSnackbar';
 
 
 const useStyles = makeStyles((theme) =>
@@ -38,13 +38,18 @@ const useStyles = makeStyles((theme) =>
     })
 );
 
-
-
 export default function Favorites(props: any) {
     const classes = useStyles(props);
 
     const [value, setValue] = useState([]);
-    const [message, setMessage] = useState('');
+    const [config, setConfig] = useState<IPositionedSnackbarProps['messageConf']>(
+        {
+            vertical: 'top',
+            horizontal: 'center',
+            variant: 'success',
+            message: ''
+        }
+    );
 
 
     useEffect(() => {
@@ -53,10 +58,21 @@ export default function Favorites(props: any) {
                 .then((res: any) => {
                     console.log(res);
                     setValue(res.data.address);
+                    setConfig({
+                        vertical: 'top',
+                        horizontal: 'right',
+                        variant: 'success',
+                        message: res.message
+                    })
                 })
                 .catch((res: any) => {
                     console.log(res.message);
-                    setMessage(res.message);
+                    setConfig({
+                        vertical: 'top',
+                        horizontal: 'right',
+                        variant: 'error',
+                        message: res.message
+                    })
                 })
         }
     }, [value]);
@@ -83,12 +99,7 @@ export default function Favorites(props: any) {
                     ))}
                 </GridList>
             </div>
-            <PositionedSnackbar messageConf={{
-                vertical: 'top',
-                horizontal: 'right',
-                variant: 'error',
-                message
-            }} />
+            <PositionedSnackbar messageConf={config} />
         </Fragment>
     )
 }
