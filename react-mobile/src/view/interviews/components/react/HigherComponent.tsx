@@ -29,13 +29,18 @@ function proxyHoc(Comp) {
                 name: 'tayde',
                 age: 1,
             }
-            return <Comp {...this.props} {...newProps} />
+            return 
+            <Comp 
+                {...this.props} 
+                {...newProps} 
+            />
         }
     }
 }
 
         1.2.提取状态: 可以通过 props 将被包裹
-            组件中的 state 依赖外层，例如用于转换受控组件:
+            组件中的 state 依赖外层，
+            例如用于转换受控组件:
 
 function withOnChange(Comp) {
     return class extends React.Component {
@@ -55,14 +60,20 @@ function withOnChange(Comp) {
                 value: this.state.name,
                 onChange: this.onChangeName,
             }
-            return <Comp {...this.props} {...newProps} />
+            return 
+            <Comp 
+                {...this.props} 
+                {...newProps} 
+            />
         }
     }
 }
 
-使用姿势如下，这样就能非常快速的将一个 Input 组件转化成受控组件
+使用姿势如下，
+这样就能非常快速的将一个 Input 组件转化成受控组件
 
-const NameInput = props => (<input name="name" {...props} />)
+const NameInput = props => 
+    (<input name="name" {...props} />)
 export default withOnChange(NameInput)
 
         1.3.包裹组件: 可以为被包裹元素进行一层包装
@@ -70,16 +81,17 @@ export default withOnChange(NameInput)
 function withMask(Comp) {
   return class extends React.Component {
       render() {
-		  return (
-		      <div>
-				  <Comp {...this.props} />
-					<div style={{
-					  width: '100%',
-					  height: '100%',
-					  backgroundColor: 'rgba(0, 0, 0, .6)',
-				  }} 
-			  </div>
-		  )
+        return (
+            <div>
+                <Comp {...this.props} />
+                <div style={{
+                    width: '100%',
+                    height: '100%',
+                    backgroundColor: 
+                        'rgba(0, 0, 0, .6)',
+                }} 
+            </div>
+        )
 	  }
   }
 }
@@ -112,7 +124,8 @@ function withLoading(Comp) {
             可以直接修改被包裹组件渲染出的 React 元素树
 
             2.1.2.操作状态 (Operate State):
-            可以直接通过 this.state 获取到被包裹组件的状态，
+            可以直接通过 this.state 
+                获取到被包裹组件的状态，
             并进行操作。
             但这样的操作容易使 state 变得难以追踪，
             不易维护，谨慎使用
@@ -125,30 +138,31 @@ function withLoading(Comp) {
 
 function withAdminAuth(WrappedComponent) {
     return class extends React.Component {
-		constructor(props){
-			super(props)
-			this.state = {
-		    	isAdmin: false,
-			}
-		} 
-		async componentWillMount() {
-            const currentRole = 
-                await getCurrentUserRole();
-		    this.setState({
-		        isAdmin: currentRole === 'Admin',
-		    });
-		}
-		render() {
-		    if (this.state.isAdmin) {
-		        return <Comp {...this.props} />;
-		    } else {
-		        return (
-                    <div>
-                        您没有权限查看该页面，请联系管理员！
-                    </div>
-                    );
-		    }
-		}
+    constructor(props){
+        super(props)
+        this.state = {
+            isAdmin: false,
+        }
+    } 
+    async componentWillMount() {
+        const currentRole = 
+            await getCurrentUserRole();
+        this.setState({
+            isAdmin: currentRole === 'Admin',
+        });
+    }
+    render() {
+        if (this.state.isAdmin) {
+            return <Comp {...this.props} />;
+        } else {
+            return (
+                <div>
+                    您没有权限查看该页面，
+                    请联系管理员！
+                </div>
+                );
+        }
+    }
     };
 }
 
