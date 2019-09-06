@@ -14,7 +14,7 @@ export const RouterList = {
             component: lazy(() => import('../view/Home')),
             synchronize: false,
             link: 'home',
-            name: 'home',
+            name: 'home'
         },
         {
             component: AboutView,

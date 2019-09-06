@@ -2,6 +2,7 @@ import React, { Fragment, Suspense } from 'react';
 
 export interface Iprops {
     LoadAsyncComponent: any;
+    props?: any;
 }
 
 export default function AsyncComponent(props: Iprops) {
@@ -10,7 +11,7 @@ export default function AsyncComponent(props: Iprops) {
     console.log(props);
     return (
         <Suspense fallback={<div>Loading...</div>}>
-            <LoadAsyncComponent />
+            <LoadAsyncComponent {...props} />
         </Suspense>
     )
 }

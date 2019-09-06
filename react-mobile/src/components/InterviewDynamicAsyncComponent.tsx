@@ -54,11 +54,11 @@ export default function InterviewDynamicAsyncComponent(props: any) {
                         divider
                         aria-haspopup="true"
                         aria-controls="ringtone-menu"
-                        aria-label="phone ringtone"
+                        aria-label="Choice Component"
                         onClick={handleClickListItem}
                         role="listitem"
                     >
-                        <ListItemText primary="Phone ringtone" secondary={value} />
+                        <ListItemText primary="Choice Component" secondary={value} />
                     </ListItem>
                     {/* <ListItem button divider disabled role="listitem">
                         <ListItemText primary="Default notification ringtone" secondary="Tethys" />
@@ -68,7 +68,7 @@ export default function InterviewDynamicAsyncComponent(props: any) {
                             if (item.name === value && item.path) {
                                 const OtherComponent = item.path;
                                 return (
-                                    <AsyncComponent LoadAsyncComponent={OtherComponent} />
+                                    <AsyncComponent key={item.path} LoadAsyncComponent={OtherComponent} />
                                 )
                             };
                         })

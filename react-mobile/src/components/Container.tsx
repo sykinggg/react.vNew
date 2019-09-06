@@ -80,7 +80,7 @@ export default function container() {
                         )
                     } else {
                         return (
-                            < Route key = { item.link } path = { '/' + item.link } render = {(props) => <AsyncComponent LoadAsyncComponent={item.component} />} />
+                            < Route key = { item.link } path = { '/' + item.link } render = {(props) => <AsyncComponent props={props} LoadAsyncComponent={item.component} />} />
                         )
                     }
         })}

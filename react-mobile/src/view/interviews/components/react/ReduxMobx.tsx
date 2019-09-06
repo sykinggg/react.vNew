@@ -2,8 +2,9 @@ import React, { Fragment } from 'react';
 
 import ComponentContainer from '../ComponentContainer';
 
-export default function ReduxMobx(props: any) {
 
+
+export default function ReduxMobx(props: any) {
     const [content, setContent] = React.useState(`
 两者对比:
 

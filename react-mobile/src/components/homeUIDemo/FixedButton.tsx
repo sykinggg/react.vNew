@@ -11,9 +11,11 @@ const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
             backgroundColor: theme.palette.background.paper,
-            width: 500,
-            position: 'relative',
-            minHeight: 200,
+            position: 'fixed',
+            top: '64px',
+            left: '0px',
+            right: '0px',
+            bottom: '0px'
         },
         fab: {
             position: 'absolute',
@@ -36,15 +38,16 @@ export default function FixedButton(props: any) {
     const theme = useTheme();
     return (
         <Fragment>
-            FixedButton
-            <Zoom
-            key={'primary' as 'primary'}
-            unmountOnExit
-            >
-                <Fab aria-label={'Add'} className={classes.fab} color={'primary' as 'primary'}>
-                    {<AddIcon />}
-                </Fab>
-            </Zoom>
+            <div className={classes.root}>
+                <Zoom
+                key={'primary' as 'primary'}
+                unmountOnExit
+                >
+                    <Fab aria-label={'Add'} className={classes.fab} color={'primary' as 'primary'}>
+                        {<AddIcon />}
+                    </Fab>
+                </Zoom>
+            </div>
         </Fragment>
     )
 }

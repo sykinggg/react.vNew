@@ -7,6 +7,14 @@ export interface Iinterview {
 
 export const reactInterviewContainerData: Iinterview[] = [
     {
+        name: 'Hooks',
+        path: lazy(() => import('./react/Hooks'))
+    },
+    {
+        name: 'redux的工作流程',
+        path: lazy(() => import('./react/ReduxWorkFlow'))
+    },
+    {
         name: 'React高阶组件',
         path: lazy(() => import('./react/HigherComponent'))
     },
@@ -25,10 +33,6 @@ export const reactInterviewContainerData: Iinterview[] = [
     {
         name: 'react-redux的工作流程',
         path: lazy(() => import('./react/ReactReduxWorkFlow'))
-    },
-    {
-        name: 'redux的工作流程',
-        path: lazy(() => import('./react/ReduxWorkFlow'))
     },
     {
         name: 'Time Slice',
