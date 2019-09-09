@@ -1,10 +1,12 @@
 import React, { Fragment } from 'react';
-import AsyncBottomNavigation from '../components/common/AsyncBottomNavigation';
-import { RouterList } from './aboutViews/About.router';
 
-export default function About(props: any) {
-    if (props.location.pathname === '/about') {
-        props.history.push('/about/favorites');
+import AsyncBottomNavigation from '../components/common/AsyncBottomNavigation';
+
+import { RouterList } from './baseInterviews/BaseInterview.router';
+
+export default function BaseInterviews(props: any) {
+    if (props.location.pathname === '/baseInterviews') {
+        props.history.push('/baseInterviews/html');
     }
     return (
         <Fragment>

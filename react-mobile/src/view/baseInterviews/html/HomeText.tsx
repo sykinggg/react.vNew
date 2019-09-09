@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 
-export default function homeLayout(props: any) {
+export default function HomeText(props: any) {
     return (
         <Fragment>
-            homeLayout
+            HomeText
         </Fragment>
     )
 }

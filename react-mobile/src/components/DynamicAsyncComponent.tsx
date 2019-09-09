@@ -23,8 +23,8 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export default function InterviewDynamicAsyncComponent(props: any) {
-    const { reactInterviewContainerData } = props;
+export default function DynamicAsyncComponent(props: any) {
+    const { dataComponentArr } = props;
     const classes = useStyles(props);
     const [open, setOpen] = React.useState(false);
     const [value, setValue] = React.useState('');
@@ -45,35 +45,42 @@ export default function InterviewDynamicAsyncComponent(props: any) {
         <Fragment>
             <p>dialog 的状态{JSON.stringify(open)}</p>
             <div className={classes.root}>
-                <List component="div" role="list">
-                    {/* <ListItem button divider disabled role="listitem">
-                        <ListItemText primary="Interruptions" />
-                    </ListItem> */}
-                    <ListItem
-                        button
-                        divider
-                        aria-haspopup="true"
-                        aria-controls="ringtone-menu"
-                        aria-label="Choice Component"
-                        onClick={handleClickListItem}
-                        role="listitem"
-                    >
-                        <ListItemText primary="Choice Component" secondary={value} />
-                    </ListItem>
-                    {/* <ListItem button divider disabled role="listitem">
-                        <ListItemText primary="Default notification ringtone" secondary="Tethys" />
-                    </ListItem> */}
-                    {
-                        reactInterviewContainerData.map((item: any, index: number) => {
-                            if (item.name === value && item.path) {
-                                const OtherComponent = item.path;
-                                return (
-                                    <AsyncComponent key={item.path} LoadAsyncComponent={OtherComponent} />
-                                )
-                            };
-                        })
-                    }
-                </List>
+                {/* 组件动态选择 可以传入组件进行事件触发 */}
+                {
+                    props.choiceComponent ? 
+                    <props.choiceComponent clickFun={handleClickListItem} /> :
+                    <List component="div" role="list">
+                        <ListItem
+                            button
+                            divider
+                            aria-haspopup="true"
+                            aria-controls="ringtone-menu"
+                            aria-label="Choice Component"
+                            onClick={handleClickListItem}
+                            role="listitem"
+                        >
+                            <ListItemText primary="Choice Component" secondary={value} />
+                        </ListItem>
+                    </List>
+                }
+                {/* 选择好的组件展示选中状态 */}
+                {
+                    props.choiceComponent ? 
+                    <h6>{value}</h6> :
+                    ''
+                }
+                {/* 异步动态加载选中的组件 */}
+                {
+                    dataComponentArr.map((item: any, index: number) => {
+                        if (item.name === value && item.path) {
+                            const OtherComponent = item.path;
+                            return (
+                                <AsyncComponent key={item.path} LoadAsyncComponent={OtherComponent} />
+                            )
+                        };
+                    })
+                }
+                {/* dialog 弹出框组件回调函数以及数据绑定 */}
                 <ConfirmationDialogRaw
                     classes={{
                         paper: classes.paper,
@@ -83,7 +90,7 @@ export default function InterviewDynamicAsyncComponent(props: any) {
                     open={open}
                     onClose={handleClose}
                     value={value}
-                    reactInterviewContainerData={reactInterviewContainerData}
+                    reactInterviewContainerData={dataComponentArr}
                     Component={InterviewDialogContainer}
                     title="选择动态组件"
                 />

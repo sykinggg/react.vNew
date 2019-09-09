@@ -7,6 +7,10 @@ export interface Iinterview {
 
 export const reactInterviewContainerData: Iinterview[] = [
     {
+        name: '使用 useEffect',
+        path: lazy(() => import('./react/UseEffectHook'))
+    },
+    {
         name: 'Hooks',
         path: lazy(() => import('./react/Hooks'))
     },

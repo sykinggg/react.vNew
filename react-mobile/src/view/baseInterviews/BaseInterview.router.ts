@@ -8,21 +8,21 @@ export const RouterList = {
     defaultName: 'favorites',
     linkArr: [
         {
-            component: lazy(() => import('./Favorites')),
-            link: '/about/favorites',
-            name: 'favorites',
+            component: lazy(() => import('./HtmlDataView')),
+            link: '/baseInterviews/html',
+            name: 'html',
             icon: RestoreIcon
         },
         {
-            component: lazy(() => import('./Nearby')),
-            link: '/about/nearby',
-            name: 'nearby',
+            component: lazy(() => import('./CssDataView')),
+            link: '/baseInterviews/css',
+            name: 'css',
             icon: FavoriteIcon
         },
         {
-            component: lazy(() => import('./Recents')),
-            link: '/about/recents',
-            name: 'recents',
+            component: lazy(() => import('./JsDataView')),
+            link: '/baseInterviews/js',
+            name: 'js',
             icon: LocationOnIcon
         },
     ],

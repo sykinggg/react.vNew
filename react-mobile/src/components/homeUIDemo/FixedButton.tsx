@@ -10,16 +10,11 @@ import { green } from '@material-ui/core/colors';
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
         root: {
-            backgroundColor: theme.palette.background.paper,
-            position: 'fixed',
-            top: '64px',
-            left: '0px',
-            right: '0px',
-            bottom: '0px'
+            backgroundColor: theme.palette.background.paper
         },
         fab: {
-            position: 'absolute',
-            bottom: theme.spacing(2),
+            position: 'fixed',
+            bottom: theme.spacing(8),
             right: theme.spacing(2),
         },
         fabGreen: {
@@ -32,6 +27,9 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
+export interface IProps {
+    clickFun: any;
+}
 
 export default function FixedButton(props: any) {
     const classes = useStyles(props);
@@ -39,14 +37,9 @@ export default function FixedButton(props: any) {
     return (
         <Fragment>
             <div className={classes.root}>
-                <Zoom
-                key={'primary' as 'primary'}
-                unmountOnExit
-                >
-                    <Fab aria-label={'Add'} className={classes.fab} color={'primary' as 'primary'}>
-                        {<AddIcon />}
-                    </Fab>
-                </Zoom>
+                <Fab aria-label={'Add'} onClick={props.clickFun} className={classes.fab} color={'primary' as 'primary'}>
+                    {<AddIcon />}
+                </Fab>
             </div>
         </Fragment>
     )

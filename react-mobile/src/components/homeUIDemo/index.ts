@@ -1,1 +1,1 @@
-export * from './AutoGridNoWrap';
+export * from './FixedButton';

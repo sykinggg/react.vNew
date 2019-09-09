@@ -17,8 +17,8 @@ export const RouterList = {
             name: 'home'
         },
         {
-            component: AboutView,
-            synchronize: true,
+            component: lazy(() => import('../view/About')),
+            synchronize: false,
             link: 'about',
             name: 'about',
         },
@@ -33,6 +33,12 @@ export const RouterList = {
             synchronize: false,
             link: 'interview',
             name: 'interview'
+        },
+        {
+            component: lazy(() => import('../view/BaseInterviews')),
+            synchronize: false,
+            link: 'baseInterviews',
+            name: 'baseInterviews'
         }
     ],
     minHeight: '',
