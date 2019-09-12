@@ -5,7 +5,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
-import InterviewDialogContainer from './dialog/InterviewDialogContainer';
+import InterviewDialogContainer from './dialogs/InterviewDialogContainer';
 
 import AsyncComponent from './common/AsyncComponent';
 

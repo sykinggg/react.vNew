@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 
 import img from '../../../../img/redux.png'
 
-import ComponentContainer from '../ComponentContainer';
+import ComponentContainer from '../../../../components/common/ComponentContainer';
 import { makeStyles } from '@material-ui/styles';
 
 const useStyles1 = makeStyles(() => ({

@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme: Theme) =>
     }),
 );
 
-export interface IProps {
+export interface IFixedButtonProps {
     clickFun: any;
 }
 

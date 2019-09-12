@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import ComponentContainer from '../ComponentContainer';
+import ComponentContainer from '../../../../components/common/ComponentContainer';
 
 export default function PureFunction(props: any) {
 
