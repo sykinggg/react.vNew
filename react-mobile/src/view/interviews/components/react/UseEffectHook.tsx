@@ -28,7 +28,7 @@ React 会跳过这个 effect，这就实现了性能的优化
 
 如果想执行只运行一次的 effect（仅在组件挂载和卸载时执行）
 可以传递一个空数组（[]）作为第二个参数。
-这就告诉 React 你的 effect 不依赖于
+这就告诉 React 的 effect 不依赖于
 props 或 state 中的任何值，
 所以它永远都不需要重复执行
 
@@ -93,7 +93,7 @@ function Reddit() {
     const json = await res.json();
 
     setPosts(json.data.children.map(c => c.data));
-  }); // 这里没有传入第二个参数，你猜猜会发生什么？
+  }); // 这里没有传入第二个参数，猜猜会发生什么？
 
   // Render as usual
   return (

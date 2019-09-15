@@ -1,8 +1,3 @@
-import HomeView from '../view/Home';
-import AboutView from '../view/About';
-import ComponentAll from '../view/ComponentAll';
-import Interview from '../view/Interview';
-
 import { lazy } from 'react';
 
 export const TextRouter = lazy(() => import('../view/Home'));

@@ -172,7 +172,7 @@ useEffect(() => {
     
     5.自定义钩子(useXxxxx): 
         基于Hooks可以引用其它Hooks这个特性，
-        我们可以编写自定义钩子，
+        可以编写自定义钩子，
             如上面的useMounted
 
 function useTitle(title) {
@@ -184,7 +184,7 @@ function useTitle(title) {
 
 // 使用:
 function Home() {
-const title = '我是首页'
+const title = '是首页'
 useTitle(title)
                             `);
     const [title, setTitle] = React.useState('React Hooks');

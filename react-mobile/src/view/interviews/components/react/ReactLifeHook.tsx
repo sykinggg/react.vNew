@@ -52,7 +52,7 @@ export default function VirtualDom(props: any) {
         有两个参数prevProps和prevState，
         表示之前的属性和之前的state，这个函数有一个返回值，
         会作为第三个参数传给componentDidUpdate，
-        如果你不想要返回值，可以返回null，
+        如果不想要返回值，可以返回null，
         此生命周期必须与componentDidUpdate搭配使用
     componentDidUpdate:
         componentDidUpdate(prevProps, prevState, snapshot),

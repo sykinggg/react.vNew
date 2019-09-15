@@ -18,7 +18,7 @@ export default function ReduxWorkFlow(props: any) {
     普通总结：
 Store：
 
-    保存数据的地方，你可以把它看成一个容器，
+    保存数据的地方，可以把它看成一个容器，
     整个应用只能有一个Store
 
 State：
@@ -36,7 +36,7 @@ Action：
 Action Creator：
 
     View要发送多少种消息，就会有多少种Action。
-    如果都手写，会很麻烦，所以我们定义一个函数来生成Action，
+    如果都手写，会很麻烦，所以定义一个函数来生成Action，
     这个函数就叫Action Creator。
 
 Reducer：

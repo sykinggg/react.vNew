@@ -64,7 +64,7 @@ redux-saga缺陷:
         redux-saga不仅在
             使用难以理解的 generator function
         ,而且有数十个API,学习成本远超redux-thunk,
-        最重要的是你的额外学习成本是只服务于这个库的,
+        最重要的是的额外学习成本是只服务于这个库的,
         与redux-observable不同,
         redux-observable虽然也有额外学习成本
         但是背后是rxjs和一整套思想
@@ -85,11 +85,11 @@ redux-observable优点:
     功能最强: 
         由于背靠rxjs这个强大的响应式编程的库,
         借助rxjs的操作符,
-        可以几乎做任何你能想到的异步处理
+        可以几乎做任何能想到的异步处理
 
     背靠rxjs: 
         由于有rxjs的加持,
-        如果你已经学习了rxjs,
+        如果已经学习了rxjs,
             redux-observable的学习成本并不高,
         而且随着rxjs的升级
         redux-observable也会变得更强大
@@ -97,7 +97,7 @@ redux-observable优点:
 redux-observable缺陷:
 
     学习成本奇高: 
-        如果你不会rxjs,
+        如果不会rxjs,
         则需要额外学习两个复杂的库
         
     社区一般: 

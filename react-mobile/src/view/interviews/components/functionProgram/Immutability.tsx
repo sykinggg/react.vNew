@@ -6,7 +6,7 @@ export default function Immutability(props: any) {
 
     const [content, setContent] = React.useState(`
 不可变性意味着不可改变
-在函数式编程中，你无法更改数据，也不能更改。 
+在函数式编程中，无法更改数据，也不能更改。 
 如果要改变或更改数据，则必须复制数据副本来更改
 
 例如，这是一个student对象和changeName函数，

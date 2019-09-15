@@ -5,7 +5,7 @@ import ComponentContainer from '../../../../components/common/ComponentContainer
 export default function Combination(props: any) {
 
     const [content, setContent] = React.useState(`
-在React中，我们将功能划分为小型可重用的纯函数
+在React中，将功能划分为小型可重用的纯函数
 将所有这些可重用的函数放在一起，最终使其成为产品
 将所有较小的函数组合成更大的函数，
     最终，得到一个应用程序，这称为组合

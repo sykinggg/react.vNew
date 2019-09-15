@@ -8,7 +8,7 @@ export default function RequestLifeHook(props: any) {
 思路：
     componentWillMount中可以提前进行异步请求,避免白屏
 产生的问题：
-    由于JavaScript中异步事件的性质，当您启动API调用时，
+    由于JavaScript中异步事件的性质，当启动API调用时，
     浏览器会在此期间返回执行其他工作。
     当React渲染一个组件时，
     它不会等待componentWillMount它完成任何事情

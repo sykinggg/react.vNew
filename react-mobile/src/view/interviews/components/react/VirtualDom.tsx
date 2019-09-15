@@ -13,7 +13,7 @@ export default function VirtualDom(props: any) {
         因此虚拟DOM可以保证性能下限
     无需手动操作DOM: 
         虚拟DOM的diff和patch都是在一次更新
-        中自动进行的,我们无需手动操作DOM,
+        中自动进行的,无需手动操作DOM,
         极大提高开发效率
     跨平台: 
         虚拟DOM本质上是JavaScript对象,

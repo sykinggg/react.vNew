@@ -157,7 +157,7 @@ function withAdminAuth(WrappedComponent) {
         } else {
             return (
                 <div>
-                    您没有权限查看该页面，
+                    没有权限查看该页面，
                     请联系管理员！
                 </div>
                 );
