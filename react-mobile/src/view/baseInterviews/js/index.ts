@@ -13,5 +13,9 @@ export const reactJsContainerData: Iinterview[] = [
     {
         name: '闭包',
         path: lazy(() => import('./Closure'))
+    },
+    {
+        name: '事件循环',
+        path: lazy(() => import('./EventLoop'))
     }
 ]
